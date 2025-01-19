@@ -1,0 +1,47 @@
+/* static/css/styles.css */
+
+/* Light Mode Styles */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+.bg-light {
+    background-color: #f8f9fa !important;
+    color: #000000;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+.bg-light.dark-mode {
+    background-color: #333333 !important;
+    color: #ffffff;
+}
+
+.btn-dark-mode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: inherit;
+    cursor: pointer;
+}
+
+.btn-dark-mode:hover {
+    opacity: 0.8;
+}
+
+.profile-photo {
+    border: none; /* Remove inner border */
+    outline: 1px solid white; /* Solid white border outside the image */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    filter: brightness(0.85); /* Dim the brightness */
+    border-radius: 50%; /* Ensure the outline matches the rounded image */
+    display: inline-block; /* Prevent extra margin issues */
+}
+
