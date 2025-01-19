@@ -3,7 +3,148 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
 <div class="text-center mt-5">
-    <h1>Google Analytics webapp for testing features</h1>
+    <!-- Centered Profile Photo -->
+    <img src="{{ url_for('static', filename='images/profile.png') }}" alt="Sagun Karki" class="rounded-circle" style="width: 256px; height: 256px; object-fit: cover;">
+    <!-- Name -->
+    <h1 class="mt-3">Sagun Karki</h1>
+
+    <!-- Links to GitHub and LinkedIn -->
+    <div class="mt-4">
+        <a href="https://www.linkedin.com/in/sagunkarki/" 
+           target="_blank" 
+           class="btn btn-primary me-2">
+           <i class="bi bi-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/sagun-karki" 
+           target="_blank" 
+           class="btn btn-dark">
+           <i class="bi bi-github"></i> GitHub
+        </a>
+    </div>
 </div>
+
+<!-- Education Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Education</h2>
+    <div class="p-3 mb-4 bg-light rounded shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <a href="https://www.unl.edu" target="_blank">
+                    <img src="{{ url_for('static', filename='images/nebraska-n.jpg') }}" alt="University of Nebraska-Lincoln" class="img-fluid" style="max-height: 100px;">
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h4>University of Nebraska-Lincoln</h4>
+                <p><strong>Bachelor of Science in Computer Science</strong> | Minor in Mathematics | May 2026</p>
+                <p>Relevant Coursework: Statistics and Probability, Data Structures and Algorithms, Software Engineering.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Work History Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Work History</h2>
+    
+    <!-- Data Analyst -->
+    <div class="p-3 mb-4 bg-light rounded shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <a href="https://nebraskapublicmedia.org" target="_blank">
+                    <img src="{{ url_for('static', filename='images/NPM-logo.original.png') }}" alt="Nebraska Public Media" class="img-fluid" style="max-height: 100px;">
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h4>Data Analyst (Part-time)</h4>
+                <p><strong>Nebraska Public Media</strong> | January 2025 – Present</p>
+                <p>Analyzed data gathered for different media produced and their market response. Created responsive visualizations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Science Intern -->
+    <div class="p-3 mb-4 bg-light rounded shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <a href="https://www.allofiber.com" target="_blank">
+                    <img src="{{ url_for('static', filename='images/allo-fiber.svg') }}" alt="Allo Fiber" class="img-fluid" style="max-height: 100px;">
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h4>Data Science Intern</h4>
+                <p><strong>Allo Fiber by Raikes Design Studio</strong> | September 2024 – Present</p>
+                <p>Developed a machine learning model to predict Allo customer behavior and designed a PowerBI dashboard for smart-town locations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Machine Learning Intern -->
+    <div class="p-3 mb-4 bg-light rounded shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <a href="https://watercenter.unl.edu" target="_blank">
+                    <img src="{{ url_for('static', filename='images/nwc.svg') }}" alt="Nebraska Water Center" class="img-fluid" style="max-height: 100px;">
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h4>Machine Learning Intern</h4>
+                <p><strong>Nebraska Water Center</strong> | February 2024 – January 2025</p>
+                <p>Developed machine learning models to predict corn yield based on weather patterns, achieving 82% accuracy. Delivered detailed reports and visualizations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Undergraduate Research Assistant -->
+    <div class="p-3 mb-4 bg-light rounded shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <a href="https://engineering.unl.edu" target="_blank">
+                    <img src="{{ url_for('static', filename='images/nebraska-n.jpg') }}" alt="UNL College of Engineering" class="img-fluid" style="max-height: 100px;">
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h4>Undergraduate Research Assistant</h4>
+                <p><strong>University of Nebraska-Lincoln (College of Engineering)</strong> | September 2022 – August 2024</p>
+                <p>Designed a data processing pipeline to clean raw data, reducing time by 90% and improving usability. Analyzed traffic, pedestrian, and bike-share data for research on travel behavior.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Python Flask Project -->
+    <div class="p-3 mb-4 bg-light rounded shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <a href="https://cehs.unl.edu/secd" target="_blank">
+                    <img src="{{ url_for('static', filename='images/nebraska-n.jpg') }}" alt="UNL SECD" class="img-fluid" style="max-height: 100px;">
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h4>Undergraduate Research Assistant</h4>
+                <p><strong>University of Nebraska-Lincoln (SECD)</strong> | December 2023 – February 2024</p>
+                <p>Developed a Python Flask web app for child behavior analysis, reducing data processing time by 85%. Extended PolarFlow sensor features via an iPad app.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Skills Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Skills</h2>
+    <div class="row">
+        {% for skill in skills %}
+        <div class="col-6 col-md-2 p-2">
+            <div class="d-flex align-items-center p-2 bg-light rounded shadow-sm">
+                <i class="{{ skill.icon }} fs-3 me-3"></i>
+                <span>{{ skill.name }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
 {% endblock %}
