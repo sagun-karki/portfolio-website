@@ -1,6 +1,3 @@
-/* static/css/styles.css */
-
-/* Light Mode Styles */
 body {
     background-color: #ffffff;
     color: #000000;
@@ -21,37 +18,37 @@ body.dark-mode {
 }
 
 .btn-dark-mode {
-    position: fixed; /* Keeps the button fixed on the screen */
-    top: 20px; /* Distance from the top of the viewport */
-    right: 20px; /* Distance from the right of the viewport */
-    z-index: 1000; /* Ensures it stays above other elements */
-    background-color: #ffffff; /* Dark background color */
-    color: rgb(0, 0, 0); /* White icon color */
-    border: none; /* Removes the border */
-    border-radius: 50%; /* Ensures it is perfectly circular */
-    padding: 10px; /* Adds spacing inside the button */
-    width: 40px; /* Fixed width to make it circular */
-    height: 40px; /* Fixed height to match the width */
-    display: flex; /* Centers the icon */
-    align-items: center; /* Vertically centers the icon */
-    justify-content: center; /* Horizontally centers the icon */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Optional shadow for aesthetics */
-    cursor: pointer; /* Indicates it's clickable */
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0); 
+    border: none; 
+    border-radius: 50%; 
+    padding: 10px; 
+    width: 40px; 
+    height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); 
+    cursor: pointer; 
 }
 
 .btn-dark-mode:hover {
-    background-color: #000000; /* Slightly lighter color on hover */
+    background-color: #000000; 
     color: #ffffff;
 }
 
 
 
 .profile-photo {
-    border: none; /* Remove inner border */
-    outline: 1px solid white; /* Solid white border outside the image */
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2); /* Drop shadow */
-    filter: brightness(0.85); /* Dim the brightness */
-    border-radius: 50%; /* Ensure the outline matches the rounded image */
-    display: inline-block; /* Prevent extra margin issues */
+    border: none; 
+    outline: 1px solid white; 
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2); 
+    filter: brightness(0.85); 
+    border-radius: 50%; 
+    display: inline-block; 
 }
 
