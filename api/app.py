@@ -1,26 +1,40 @@
 import os
-import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     """
-    Render the home page
+    Renders the home page (index.html).
     """
-    skills_file_path = os.path.join(app.static_folder, 'json', 'skills.json')
+    return render_template('index.html')
 
-    # Load skills from the JSON file
-    try:
-        with open(skills_file_path, encoding='utf-8') as f:
-            skills = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        skills = []
-        print(f"Error loading skills.json: {e}")
 
-    return render_template('index.html', skills=skills)
+@app.route('/experience')
+def experience():
+    """
+    Renders the work experience page.
+    """
+    return render_template('experience.html')
+
+
+@app.route('/projects')
+def projects():
+    """
+    Renders the projects page.
+    """
+    return render_template('projects.html')
+
+
+@app.route('/skills')
+def skills():
+    """
+    Renders the skills page.
+    """
+    return render_template('skills.html')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Work Experience | Sagun Karki{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-4" style="max-width: 900px;">
+    <h2 class="text-center mb-5">Work Experience</h2>
+
+    <div class="row">
+        <div class="col-md-3 text-center text-md-start mb-3 mb-md-0">
+            <img src="{{ url_for('static', filename='images/NPM-logo.original.png') }}" alt="Nebraska Public Media" class="img-fluid" style="max-height: 60px;">
+        </div>
+        <div class="col-md-9">
+            <h3 class="h5">Data Analyst (Part-time)</h3>
+            <p class="mb-1"><strong>Nebraska Public Media</strong></p>
+            <p class="text-muted small mb-2">Lincoln, NE | January 2025 – Present</p>
+            <ul class="text-muted">
+                <li>Refactored ETL pipelines in BigQuery/Dataform, cutting execution time by 65%.</li>
+                <li>Built automated reporting workflows using GitHub Actions, reducing manual effort by 40%.</li>
+                <li>Analyzed engagement across 1,500+ articles to identify user click latency trends.</li>
+                <li>Built analytical dashboards to visualize trends and evaluate LLM performance on customer behavior.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col-md-3 text-center text-md-start mb-3 mb-md-0">
+             <img src="{{ url_for('static', filename='images/allo-fiber.svg') }}" alt="Raikes School" class="img-fluid" style="max-height: 60px;">
+        </div>
+        <div class="col-md-9">
+            <h3 class="h5">Data Science Intern</h3>
+            <p class="mb-1"><strong>Jeffrey S. Raikes School of Computer Science and Management</strong></p>
+            <p class="text-muted small mb-2">Lincoln, NE | September 2024 – January 2025</p>
+             <ul class="text-muted">
+                <li>Built an ensemble fraud detection system (HMM, SVM) for 40K+ IoT routers.</li>
+                <li>Engineered time-series features capturing usage deltas, dropout patterns, and inconsistencies.</li>
+                <li>Deployed interactive Power BI dashboards to track anomalies, reducing triage time by 50%.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col-md-3 text-center text-md-start mb-3 mb-md-0">
+            <img src="{{ url_for('static', filename='images/nwc.svg') }}" alt="Nebraska Water Center" class="img-fluid" style="max-height: 60px;">
+        </div>
+        <div class="col-md-9">
+            <h3 class="h5">Machine Learning Intern</h3>
+            <p class="mb-1"><strong>Nebraska Water Center</strong></p>
+            <p class="text-muted small mb-2">Lincoln, NE | February 2024 – January 2025</p>
+            <ul class="text-muted">
+                <li>Developed predictive models (Random Forest, XGBoost) for corn yield, achieving 82% accuracy.</li>
+                <li>Engineered time-series and agro-climatic features, improving model performance by 20%.</li>
+                <li>Benchmarked algorithms and documented model architecture to ensure reproducibility.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

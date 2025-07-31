@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | Sagun Karki{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Projects</h2>
+
+<div class="p-4 mb-4 bg-light rounded shadow-sm">
+    <h4><a href="https://github.com/sagun-karki/CSCE410_final_project" target="_blank">Retrieval-Augmented Generation (RAG) System for FAQ Answering</a></h4>
+    <ul>
+        <li>Developed RAG system with Sentence-BERT and FAISS, achieving 90% precision@k on 170K+ FAQ queries. </li>
+        <li>Developed ingestion and indexing modules to support scalable and source-linked LLM responses. </li>
+        <li>Validated system performance on synthetic and real-world FAQ datasets using precision@k, recall@k, and NDCG to measure retrieval relevance and ranking quality. </li>
+    </ul>
+</div>
+
+<div class="p-4 mb-4 bg-light rounded shadow-sm">
+    <h4>Transit System</h4>
+    <ul>
+        <li>Aggregated real-time transit and bike-share data from public APIs to model the effects of editing transit nodes. </li>
+        <li>Conducted traffic and usage forecasting using regression models, validated findings with historical demand patterns. </li>
+        <li>Extracted environmental context features (e.g., sidewalk presence, signage density) from Mapillary images to assess safety implications for bike-share stations. </li>
+    </ul>
+</div>
+
+<div class="p-4 mb-4 bg-light rounded shadow-sm">
+    <h4>Depression Detection (Kaggle Competition)</h4>
+    <ul>
+        <li>Cleaned and preprocessed noisy, synthetic survey data to improve model signal quality. </li>
+        <li>Engineered features and performed exploratory analysis to uncover limitations of the synthetic dataset. </li>
+        <li>Optimized XGBoost classifier for depression detection, attaining 94.5% accuracy on Kaggle via hyperparameter tuning. </li>
+    </ul>
+</div>
+{% endblock %}
