@@ -255,7 +255,32 @@ main {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    margin-bottom: 2rem;
 }
+
+.hero-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.hero-socials a {
+    color: var(--color-text-secondary);
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hero-socials a:hover {
+    transform: translateY(-5px);
+    color: var(--color-primary);
+}
+
+.hero-socials svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
 
 /* NEW: Styles for glassy hero buttons */
 .hero-links md-filled-button,
