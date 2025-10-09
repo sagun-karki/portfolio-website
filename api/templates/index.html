@@ -1,60 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}Sagun Karki | Home{% endblock %}
+{% block title %}Sagun Karki{% endblock %}
 
 {% block content %}
-<div class="container py-5 my-4">
+<section class="hero">
+  <!-- <img src="{{ url_for('static', filename='images/profile-img.png') }}" alt="Sagun Karki" class="profile-photo"> -->
+  <div class="hero-text">
+    <h1 class="hero-title">Sagun Karki</h1>
+    <p class="hero-subtitle">Data Scientist & Machine Learning Engineer</p>
+    <p class="hero-description">I build robust ML models, optimize data pipelines, and deliver insights that scale. My focus is on creating performant, end-to-end intelligent systems that solve real-world problems.</p>
+    <p class="hero-edu">B.S. Data Science & Computer Science — University of Nebraska-Lincoln (Expected May 2026)</p>
+    <div class="hero-links">
+      <a href="{{ url_for('projects') }}">
+        <md-filled-button>View Projects</md-filled-button>
+      </a>
+      <a href="{{ url_for('experience') }}">
+        <md-outlined-button>See Experience</md-outlined-button>
+      </a>
+    </div>
+  </div>
+</section>
 
-    <section class="mb-5">
-        <div class="d-flex flex-column flex-md-row align-items-center">
-            <div class="mb-4 mb-md-0 me-md-5">
-                <img src="{{ url_for('static', filename='images/profile-img.png') }}"
-                     alt="Sagun Karki"
-                     class="img-fluid rounded-circle"
-                     style="width: 180px; height: 180px; object-fit: cover;">
-            </div>
-            <div class="text-center text-md-start">
-                <h1 class="h2">Sagun Karki</h1>
-                <p class="fs-5 text-muted">Data Scientist & ML Engineer</p>
-                <p>
-                    Engineering intelligent systems that scale. I build robust ML models, optimize data pipelines, and deliver insights that matter.
-                </p>
-                <p class="small text-muted">
-                    B.S. in Data Science & Computer Science — University of Nebraska-Lincoln (May 2026)
-                </p>
-                <div class="mt-3">
-                    <a href="{{ url_for('projects') }}" class="text-dark me-4">Projects</a>
-                    <a href="{{ url_for('experience') }}" class="text-dark">Experience</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="card">
+  <h2 class="card-title">About Me</h2>
+  <p>I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am passionate about leveraging data to build intelligent applications and derive actionable insights. My core expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to model training and inference.</p>
+</section>
 
-    <hr class="my-5">
-
-    <section>
-        <div class="row gx-lg-5">
-            <div class="col-lg-5 mb-5 mb-lg-0">
-                <h2 class="h4 mb-3">About Me</h2>
-                <p class="text-muted">
-                    I'm a data scientist with a strong base in computer science and applied mathematics. My focus is building performant machine learning solutions and deploying them end-to-end.
-                </p>
-            </div>
-            <div class="col-lg-7">
-                <h2 class="h4 mb-3">Technical Skills</h2>
-                <dl class="row">
-                    <dt class="col-sm-3">Languages</dt>
-                    <dd class="col-sm-9 text-muted">Python, SQL, JavaScript, Java, C#, R, Bash</dd>
-
-                    <dt class="col-sm-3">ML & Data</dt>
-                    <dd class="col-sm-9 text-muted">Scikit-learn, TensorFlow, PyTorch, PySpark, Pandas</dd>
-
-                    <dt class="col-sm-3">Platforms</dt>
-                    <dd class="col-sm-9 text-muted">GCP, Docker, Git, BigQuery, GitHub Actions</dd>
-                </dl>
-            </div>
-        </div>
-    </section>
-
-</div>
+<section class="card">
+  <h2 class="card-title">Technical Skills</h2>
+  <ul class="skills-list">
+    <li><strong>Languages:</strong> Python, SQL, JavaScript, Java, C#, R, Bash</li>
+    <li><strong>ML & Data:</strong> Scikit-learn, TensorFlow, PyTorch, PySpark, Pandas, NumPy, SciPy</li>
+    <li><strong>Platforms & Tools:</strong> Google Cloud Platform (GCP), Docker, Git, BigQuery, GitHub Actions</li>
+  </ul>
+</section>
 {% endblock %}
