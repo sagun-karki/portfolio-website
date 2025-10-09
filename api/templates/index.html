@@ -4,12 +4,10 @@
 
 {% block content %}
 <section class="hero">
-  <!-- <img src="{{ url_for('static', filename='images/profile-img.png') }}" alt="Sagun Karki" class="profile-photo"> -->
   <div class="hero-text">
     <h1 class="hero-title">Sagun Karki</h1>
     <p class="hero-subtitle">Data Scientist & Machine Learning Engineer</p>
-    <p class="hero-description">I build robust ML models, optimize data pipelines, and deliver insights that scale. My focus is on creating performant, end-to-end intelligent systems that solve real-world problems.</p>
-    <p class="hero-edu">B.S. Data Science & Computer Science — University of Nebraska-Lincoln (Expected May 2026)</p>
+    <p class="hero-edu">B.S. in Computer Science and Data Science, Minor in Mathematics <br> University of Nebraska-Lincoln (Expected May 2026)</p>
     <div class="hero-links">
       <a href="{{ url_for('projects') }}">
         <md-filled-button>View Projects</md-filled-button>
@@ -21,17 +19,12 @@
   </div>
 </section>
 
-<section class="card">
-  <h2 class="card-title">About Me</h2>
-  <p>I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am passionate about leveraging data to build intelligent applications and derive actionable insights. My core expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to model training and inference.</p>
+<section class="card about-section">
+
+  <div class="about-text">
+    <h2 class="card-title">About Me</h2>
+    <p>I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am passionate about leveraging data to build intelligent applications and derive actionable insights. My core expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to model training and inference.</p>
+  </div>
 </section>
 
-<section class="card">
-  <h2 class="card-title">Technical Skills</h2>
-  <ul class="skills-list">
-    <li><strong>Languages:</strong> Python, SQL, JavaScript, Java, C#, R, Bash</li>
-    <li><strong>ML & Data:</strong> Scikit-learn, TensorFlow, PyTorch, PySpark, Pandas, NumPy, SciPy</li>
-    <li><strong>Platforms & Tools:</strong> Google Cloud Platform (GCP), Docker, Git, BigQuery, GitHub Actions</li>
-  </ul>
-</section>
 {% endblock %}

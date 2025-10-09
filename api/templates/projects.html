@@ -1,34 +1,47 @@
 {% extends "base.html" %}
 
-{% block title %}Projects | Sagun Karki{% endblock %}
+{% block title %}Sagun Karki - Projects{% endblock %}
 
 {% block content %}
-<h2 class="text-center mb-4">Projects</h2>
+<h2 class="text-center mb-5">Projects</h2>
 
-<div class="p-4 mb-4 bg-light rounded shadow-sm">
-    <h4><a href="https://github.com/sagun-karki/CSCE410_final_project" target="_blank">Retrieval-Augmented Generation (RAG) System for FAQ Answering</a></h4>
-    <ul>
-        <li>Developed RAG system with Sentence-BERT and FAISS, achieving 90% precision@k on 170K+ FAQ queries. </li>
-        <li>Developed ingestion and indexing modules to support scalable and source-linked LLM responses. </li>
-        <li>Validated system performance on synthetic and real-world FAQ datasets using precision@k, recall@k, and NDCG to measure retrieval relevance and ranking quality. </li>
-    </ul>
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4>
+            <a href="https://github.com/sagun-karki/CSCE410_final_project" target="_blank" class="mb-1" style="color: inherit; text-decoration: none;">
+            AI-Powered FAQ System 🔗
+            </a>
+        </h4>
+        <p class="text-muted small mb-2">Python, Flask, Git, FAISS, RAG | January 2025 – April 2025</p>
+        <ul class="text-muted">
+            <li>Led a 5-person team to build an AI-powered FAQ assistant that delivered accurate, citation-backed answers to queries.</li>
+            <li>Engineered the core RAG pipeline using FAISS vector search and Sentence-BERT embeddings to return fast, citation-backed responses grounded in source documents.</li>
+            <li>Validated system performance using metrics like NDCG and recall@k to objectively measure retrieval relevance, ensuring a reliable and trustworthy user experience.</li>
+        </ul>
+    </div>
 </div>
 
-<div class="p-4 mb-4 bg-light rounded shadow-sm">
-    <h4>Transit System</h4>
-    <ul>
-        <li>Aggregated real-time transit and bike-share data from public APIs to model the effects of editing transit nodes. </li>
-        <li>Conducted traffic and usage forecasting using regression models, validated findings with historical demand patterns. </li>
-        <li>Extracted environmental context features (e.g., sidewalk presence, signage density) from Mapillary images to assess safety implications for bike-share stations. </li>
-    </ul>
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4>Depression Detection</h4>
+        <p class="text-muted small mb-2">Python, Jupyter, Git | June 2024</p>
+        <ul class="text-muted">
+            <li>Constructed a data pipeline to clean and validate synthetic data from a Kaggle depression detection dataset.</li>
+            <li>Optimized an XGBoost classifier via hyperparameter tuning, achieving 94.5% accuracy in classifying signals.</li>
+            <li>Integrated GitHub Actions for CI/CD workflows, testing, and data schema validation to ensure model reproducibility.</li>
+        </ul>
+    </div>
 </div>
 
-<div class="p-4 mb-4 bg-light rounded shadow-sm">
-    <h4>Depression Detection (Kaggle Competition)</h4>
-    <ul>
-        <li>Cleaned and preprocessed noisy, synthetic survey data to improve model signal quality. </li>
-        <li>Engineered features and performed exploratory analysis to uncover limitations of the synthetic dataset. </li>
-        <li>Optimized XGBoost classifier for depression detection, attaining 94.5% accuracy on Kaggle via hyperparameter tuning. </li>
-    </ul>
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4>Transit System</h4>
+        <p class="text-muted small mb-2">Python, Mapillary API, Git, GraphQL | June 2024 – August 2024</p>
+        <ul class="text-muted">
+            <li>Engineered a data pipeline to ingest transit data from public APIs with street-level imagery from Mapillary.</li>
+            <li>Implemented custom Python scripts to process 30k+ images, extracting signals leading to crashes programmatically.</li>
+            <li>Correlated extracted crash-risk signals with public transit travel times to map high-risk periods and locations.</li>
+        </ul>
+    </div>
 </div>
 {% endblock %}

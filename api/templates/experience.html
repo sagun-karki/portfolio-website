@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Work Experience | Sagun Karki{% endblock %}
+{% block title %}Sagun Karki - Experience{% endblock %}
 
 {% block content %}
 <div class="container py-5 my-4" style="max-width: 900px;">
@@ -11,14 +11,13 @@
             <img src="{{ url_for('static', filename='images/NPM-logo.original.png') }}" alt="Nebraska Public Media" class="img-fluid" style="max-height: 60px;">
         </div>
         <div class="col-md-9">
-            <h3 class="h5">Data Analyst (Part-time)</h3>
+            <h3 class="h5">Data Analyst</h3>
             <p class="mb-1"><strong>Nebraska Public Media</strong></p>
             <p class="text-muted small mb-2">Lincoln, NE | January 2025 – Present</p>
             <ul class="text-muted">
-                <li>Refactored ETL pipelines in BigQuery/Dataform, cutting execution time by 65%.</li>
-                <li>Built automated reporting workflows using GitHub Actions, reducing manual effort by 40%.</li>
-                <li>Analyzed engagement across 1,500+ articles to identify user click latency trends.</li>
-                <li>Built analytical dashboards to visualize trends and evaluate LLM performance on customer behavior.</li>
+                <li>Reduced ETL pipeline runtime by 65% through modular BigQuery/Dataform redesign, enabling near real-time BI reporting for content and audience insights.</li>
+                <li>Improved dashboard consistency and cut manual reporting effort by 40% by deploying an automated pipeline with GitHub Actions and cron jobs.</li>
+                <li>Integrated article performance data with LLM-based text analysis to uncover patterns in high-engagement content, guiding editorial decision-making.</li>
             </ul>
         </div>
     </div>
@@ -32,11 +31,11 @@
         <div class="col-md-9">
             <h3 class="h5">Data Science Intern</h3>
             <p class="mb-1"><strong>Jeffrey S. Raikes School of Computer Science and Management</strong></p>
-            <p class="text-muted small mb-2">Lincoln, NE | September 2024 – January 2025</p>
+            <p class="text-muted small mb-2">Lincoln, NE | September 2024 – May 2025</p>
              <ul class="text-muted">
-                <li>Built an ensemble fraud detection system (HMM, SVM) for 40K+ IoT routers.</li>
-                <li>Engineered time-series features capturing usage deltas, dropout patterns, and inconsistencies.</li>
-                <li>Deployed interactive Power BI dashboards to track anomalies, reducing triage time by 50%.</li>
+                <li>Developed and optimized an ensemble fraud detection system (HMM + SVM) that flagged anomalies across telemetry from 40K+ IoT routers, reducing undetected fraudulent activities in SmartTown networks.</li>
+                <li>Partnered with Allo vendors to validate IoT telemetry pipelines, ensuring data quality with operational requirements.</li>
+                <li>Created Power BI dashboards that surfaced anomaly trends and flagged endpoints, enabling engineers to quickly identify and investigate irregular activity.</li>
             </ul>
         </div>
     </div>
@@ -52,9 +51,9 @@
             <p class="mb-1"><strong>Nebraska Water Center</strong></p>
             <p class="text-muted small mb-2">Lincoln, NE | February 2024 – January 2025</p>
             <ul class="text-muted">
-                <li>Developed predictive models (Random Forest, XGBoost) for corn yield, achieving 82% accuracy.</li>
-                <li>Engineered time-series and agro-climatic features, improving model performance by 20%.</li>
-                <li>Benchmarked algorithms and documented model architecture to ensure reproducibility.</li>
+                <li>Built a deep neural network for corn yield prediction, leveraging PCA for dimensionality reduction on 20+ years of historical weather and soil data to achieve 82% accuracy.</li>
+                <li>Boosted model performance by 20% through feature engineering and hyperparameter tuning.</li>
+                <li>Benchmarked algorithms and documented model architecture, feature logic, and evaluation metrics to ensure reproducibility and handoff readiness.</li>
             </ul>
         </div>
     </div>
