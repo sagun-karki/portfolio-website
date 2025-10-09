@@ -732,3 +732,20 @@ main {
         left: 12px;
     }
 }
+
+.skill-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skill-logos img {
+    transition: transform 0.2s ease;
+}
+
+.skill-logos img:hover {
+    transform: scale(1.1);
+}
