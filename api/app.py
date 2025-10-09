@@ -12,28 +12,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/experience')
-def experience():
+@app.errorhandler(404)
+def page_not_found(e):
     """
-    Renders the work experience page.
+    Renders a custom 404 error page.
     """
-    return render_template('experience.html')
-
-
-@app.route('/projects')
-def projects():
-    """
-    Renders the projects page.
-    """
-    return render_template('projects.html')
-
-
-@app.route('/skills')
-def skills():
-    """
-    Renders the skills page.
-    """
-    return render_template('skills.html')
+    return "404 Error: Page Not Found", 404
 
 
 if __name__ == '__main__':
