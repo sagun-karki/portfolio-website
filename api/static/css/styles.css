@@ -187,8 +187,10 @@ main {
     text-decoration: none;
     color: var(--color-text-secondary);
     font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
     transition: color 0.3s ease;
-    padding: 0.25rem 0;
+    z-index: 1;
 }
 
 .nav-links a:hover,
@@ -196,7 +198,6 @@ main {
     color: var(--color-text-primary);
 }
 
-/* Active Navigation State Indicator */
 .nav-indicator {
     position: absolute;
     top: 50%;
@@ -216,26 +217,10 @@ main {
         box-shadow 0.3s ease;
     opacity: 0;
     z-index: -1;
-    /* sits behind links */
 }
 
 .main-header.scrolled .nav-indicator {
     opacity: 1;
-}
-
-.nav-links a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    transition: color 0.3s ease;
-    z-index: 1;
-}
-
-.nav-links a.active {
-    color: var(--color-text-primary);
 }
 
 .dark-theme .nav-indicator {
@@ -243,8 +228,6 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
-
-
 
 .social-links {
     display: flex;
@@ -262,8 +245,13 @@ main {
     color: var(--color-primary);
 }
 
+.hero-socials svg,
 .social-links svg {
     display: block;
+    fill: currentColor;
+}
+
+.social-links svg {
     width: 24px;
     height: 24px;
 }
@@ -285,7 +273,6 @@ main {
 /* ==========================================================================
    5. UI COMPONENTS (HERO, SECTIONS, CARDS)
    ========================================================================== */
-/* ✨ UPDATED: Section title is now plain text */
 .section-title {
     text-align: center;
     font-size: 2.25rem;
@@ -309,7 +296,6 @@ main {
     font-size: 3rem;
     font-weight: 700;
     margin: 0;
-    /* Gradient Title is kept for the hero */
     background: var(--color-primary-gradient);
     -webkit-background-clip: text;
     background-clip: text;
@@ -356,10 +342,8 @@ main {
 .hero-socials svg {
     width: 28px;
     height: 28px;
-    display: block;
 }
 
-/* Glassy hero buttons with Glare Effect */
 .hero-links md-filled-button,
 .hero-links md-outlined-button {
     position: relative;
@@ -392,9 +376,7 @@ main {
 
 .card {
     position: relative;
-    /* For glare effect */
     overflow: hidden;
-    /* For glare effect */
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: var(--border-radius);
@@ -402,14 +384,11 @@ main {
     box-shadow: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-
-    /* Scroll Animation Setup */
     opacity: 0;
     transform: translateY(20px);
     transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
 }
 
-/* Scroll Animation Visible State */
 .card.is-visible,
 .timeline-item.is-visible .card {
     opacity: 1;
@@ -417,18 +396,15 @@ main {
 }
 
 .timeline-item {
-    /* Scroll Animation Setup for Timeline */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
-    /* Add delay */
 }
 
 .timeline-item.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 .card:hover,
 .timeline-item:hover .timeline-content.card {
@@ -440,8 +416,6 @@ main {
     border: 1px solid var(--color-glass-border);
 }
 
-
-/* ✨ UPDATED: Interactive Glare Effect */
 .card::before,
 .hero-links md-filled-button::before,
 .hero-links md-outlined-button::before {
@@ -464,7 +438,6 @@ main {
     opacity: 1;
 }
 
-/* Lighter glare for dark mode */
 .dark-theme .card:hover::before,
 .dark-theme .hero-links md-filled-button:hover::before,
 .dark-theme .hero-links md-outlined-button:hover::before {
@@ -482,20 +455,16 @@ main {
     color: var(--color-text-primary);
 }
 
-
 .card-title {
     margin-top: 0;
     margin-bottom: 1.5rem;
     font-size: 1.75rem;
     padding-bottom: 0.5rem;
     display: inline-block;
-
-    /* Gradient Underline */
     border-bottom: 2px solid;
     border-image-slice: 1;
     border-image-source: var(--color-primary-gradient);
 }
-
 
 .content-grid {
     display: grid;
@@ -546,7 +515,6 @@ main {
     font-size: 0.95rem;
 }
 
-/* Skills Section */
 .skills-card {
     display: flex;
     flex-direction: column;
@@ -564,7 +532,6 @@ main {
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
     display: inline-block;
-    /* Gradient Underline */
     border-bottom: 2px solid;
     border-image-slice: 1;
     border-image-source: var(--color-primary-gradient);
@@ -628,7 +595,6 @@ main {
 
     .nav-indicator {
         display: none;
-        /* Hide indicator on mobile nav */
     }
 
     .nav-links.is-open {
@@ -656,7 +622,6 @@ main {
         text-align: center;
     }
 }
-
 
 /* ==========================================================================
    EXPERIENCE TIMELINE
