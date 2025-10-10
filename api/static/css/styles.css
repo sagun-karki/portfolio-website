@@ -174,6 +174,16 @@ main {
     font-size: 1.25rem;
     text-decoration: none;
     color: var(--color-text-primary);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.main-header.scrolled .nav-brand {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .nav-links {
@@ -300,6 +310,8 @@ main {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    transition: opacity 0.3s ease;
+    /* Add transition for smooth fade out */
 }
 
 .hero-subtitle {
