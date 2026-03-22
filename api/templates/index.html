@@ -5,7 +5,13 @@
   <div class="hero-text">
     <h1 class="hero-title">{{ site_data.profile.name }}</h1>
     <p class="hero-subtitle">{{ site_data.profile.title }}</p>
-    <p class="hero-edu">{{ site_data.profile.education | replace('|', '<br>') | safe }}</p>
+    <div class="hero-edu">
+      {% set edu_parts = site_data.profile.education.split('|') %}
+      <div class="hero-edu-degree">{{ edu_parts[0] | trim }}</div>
+      {% if edu_parts | length > 1 %}
+      <div class="hero-edu-univ">{{ edu_parts[1:] | join(' · ') | trim }}</div>
+      {% endif %}
+    </div>
     <div class="hero-links">
       <a href="#projects">
         <md-filled-button>View Projects</md-filled-button>
@@ -24,12 +30,71 @@
       {% endfor %}
     </div>
   </div>
+  
+  <div id="vector-animation-container">
+    <svg id="ml-schematic-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="stream-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="var(--color-highlight)" stop-opacity="0" />
+          <stop offset="50%" stop-color="var(--color-highlight)" stop-opacity="1" />
+          <stop offset="100%" stop-color="var(--color-highlight)" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- Main Wireframe Structure -->
+      <g class="structure-lines" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.15" fill="none">
+        <path d="M 150 150 L 150 450 M 400 100 L 400 500 M 650 200 L 650 400" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="8 8"/>
+        
+        <path d="M 150 200 L 400 150 M 150 200 L 400 300 M 150 200 L 400 450" />
+        <path d="M 150 300 L 400 150 M 150 300 L 400 300 M 150 300 L 400 450" />
+        <path d="M 150 400 L 400 150 M 150 400 L 400 300 M 150 400 L 400 450" />
+        
+        <path d="M 400 150 L 650 250 M 400 150 L 650 350" />
+        <path d="M 400 300 L 650 250 M 400 300 L 650 350" />
+        <path d="M 400 450 L 650 250 M 400 450 L 650 350" />
+
+        <rect x="50" y="50" width="700" height="500" rx="20" stroke-opacity="0.1" />
+        <line x1="50" y1="100" x2="100" y2="100" stroke-opacity="0.3" />
+        <line x1="50" y1="500" x2="100" y2="500" stroke-opacity="0.3" />
+        <circle cx="50" cy="50" r="3" fill="currentColor" stroke="none" fill-opacity="0.2"/>
+        <circle cx="750" cy="550" r="3" fill="currentColor" stroke="none" fill-opacity="0.2"/>
+      </g>
+
+      <!-- Flowing Data Streams -->
+      <g class="data-streams" stroke="url(#stream-gradient)" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M 150 200 Q 275 175 400 150 T 650 250" />
+        <path d="M 150 400 Q 275 350 400 300 T 650 350" stroke-width="2" />
+        <path d="M 50 300 C 200 500, 600 100, 750 300" stroke-dasharray="5 10" stroke-width="1.5" stroke="var(--color-highlight)" stroke-opacity="0.6" />
+      </g>
+
+      <!-- Nodes / Junctions -->
+      <g class="node-points">
+        <!-- Layer 1 -->
+        <circle cx="150" cy="200" r="6" fill="currentColor" fill-opacity="0.9" />
+        <circle cx="150" cy="300" r="6" fill="currentColor" fill-opacity="0.9" />
+        <circle cx="150" cy="400" r="6" fill="currentColor" fill-opacity="0.9" />
+        <circle cx="150" cy="200" r="12" stroke="currentColor" stroke-opacity="0.3" fill="none" />
+
+        <!-- Layer 2 -->
+        <circle cx="400" cy="150" r="8" fill="var(--color-highlight)" />
+        <circle cx="400" cy="300" r="8" fill="var(--color-highlight)" />
+        <circle cx="400" cy="450" r="8" fill="var(--color-highlight)" />
+        <circle cx="400" cy="300" r="16" stroke="var(--color-highlight)" stroke-opacity="0.4" fill="none" />
+        <circle cx="400" cy="300" r="24" stroke="var(--color-highlight)" stroke-opacity="0.2" fill="none" stroke-dasharray="2 4"/>
+
+        <!-- Layer 3 -->
+        <circle cx="650" cy="250" r="6" fill="currentColor" fill-opacity="0.9" />
+        <circle cx="650" cy="350" r="6" fill="currentColor" fill-opacity="0.9" />
+        <circle cx="650" cy="250" r="12" stroke="currentColor" stroke-opacity="0.3" fill="none" />
+      </g>
+    </svg>
+  </div>
 </section>
 
 <div class="page-content">
   <section id="about" class="about-section">
     <div class="card">
-      <h2 class="card-title">About Me</h2>
+      <h2 class="card-title">About</h2>
       <p>{{ site_data.profile.about }}</p>
     </div>
   </section>
@@ -58,7 +123,7 @@
       <div class="card">
         <h3 class="card-item-title">
           {% if project.url %}
-          <a href="{{ project.url }}" target="_blank">{{ project.title }} 🔗</a>
+          <a href="{{ project.url }}" target="_blank">{{ project.title }} ↗</a>
           {% else %}
           {{ project.title }}
           {% endif %}
@@ -94,7 +159,7 @@
       <div class="card">
         <h3 class="card-item-title">
           {% if pub.url %}
-          <a href="{{ pub.url }}" target="_blank">{{ pub.title }} 🔗</a>
+          <a href="{{ pub.url }}" target="_blank">{{ pub.title }} ↗</a>
           {% else %}
           {{ pub.title }}
           {% endif %}
@@ -105,6 +170,5 @@
       {% endfor %}
     </div>
   </section>
-</div>
 </div>
 {% endblock %}

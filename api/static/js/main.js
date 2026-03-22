@@ -7,88 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('md-icon');
     const docElement = document.documentElement;
-    const particlesContainer = document.getElementById('tsparticles');
-    const heroSection = document.querySelector('.hero');
-    const heroTitle = document.querySelector('.hero-title'); // For scroll animation
 
     // --- RESPONSIVE NAVIGATION ---
     hamburgerButton.addEventListener('click', () => {
         navLinksContainer.classList.toggle('is-open');
     });
 
-    // --- PARTICLE CONFIGURATIONS ---
-    const baseParticlesConfig = {
-        fpsLimit: 120,
-        interactivity: {
-            events: {
-                onHover: { enable: true, mode: "grab" },
-                resize: true
-            },
-            modes: {
-                grab: { distance: 140, links: { opacity: 1 } }
-            },
-        },
-        particles: {
-            number: { value: 60, density: { enable: true, value_area: 800 } },
-            color: { value: "#ffffff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.5, random: false },
-            size: { value: 3, random: true },
-            links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-            move: { enable: true, speed: 1, direction: "none", random: false, straight: false, out_mode: "out", bounce: false },
-        },
-        detectRetina: true,
-    };
-    const lightParticlesConfig = {
-        ...baseParticlesConfig,
-        particles: { ...baseParticlesConfig.particles, color: { value: "#020b43ff" }, links: { ...baseParticlesConfig.particles.links, color: "#8f9ffbff" } }
-    };
-    const darkParticlesConfig = {
-        ...baseParticlesConfig,
-        particles: { ...baseParticlesConfig.particles, color: { value: "#a8b2c1" }, links: { ...baseParticlesConfig.particles.links, color: "#333a65ff" } }
-    };
-
-    // --- THEME & PARTICLE VISIBILITY LOGIC ---
-    function loadParticlesTheme() {
-        const isDarkMode = docElement.classList.contains('dark-theme');
-        tsParticles.load("tsparticles", isDarkMode ? darkParticlesConfig : lightParticlesConfig);
-    }
-
+    // --- THEME LOGIC ---
     function updateThemeIcon() {
         themeIcon.textContent = docElement.classList.contains('dark-theme') ? 'light_mode' : 'dark_mode';
     }
 
-    function handleParticleVisibility() {
-        if (!heroSection) return;
-        const isLightMode = !docElement.classList.contains('dark-theme');
-        if (isLightMode) {
-            const heroHeight = heroSection.offsetHeight;
-            const scrollPosition = window.scrollY;
-            particlesContainer.classList.toggle('is-hidden', scrollPosition > heroHeight - header.offsetHeight);
-        } else {
-            particlesContainer.classList.remove('is-hidden');
-        }
-    }
-
-    // --- THEME EVENT LISTENERS ---
     themeToggle.addEventListener('click', () => {
         const isCurrentlyDark = docElement.classList.toggle('dark-theme');
         localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
         updateThemeIcon();
-        loadParticlesTheme();
-        handleParticleVisibility();
     });
+
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
             docElement.classList.toggle('dark-theme', e.matches);
             updateThemeIcon();
-            loadParticlesTheme();
-            handleParticleVisibility();
         }
     });
-
-    // --- RESIZE LISTENER ---
-    window.addEventListener('resize', handleParticleVisibility);
 
     // --- SCROLL-TRIGGERED ANIMATIONS ---
     const animatedElements = document.querySelectorAll('.card, .timeline-item');
@@ -99,18 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 animationObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
     animatedElements.forEach(el => animationObserver.observe(el));
 
-    // --- ACTIVE NAVIGATION STATE ---
+    // --- ACTIVE NAVIGATION STATE (Pill Indicator) ---
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     const navIndicator = document.querySelector('.nav-indicator');
 
     const activateNavLink = (link) => {
         if (!link || !navIndicator) return;
+
+        // Position the pill behind the active link
+        // offsetLeft is relative to .nav-links container, which already accounts for padding
         navIndicator.style.width = `${link.offsetWidth}px`;
         navIndicator.style.left = `${link.offsetLeft}px`;
+
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
     };
@@ -126,22 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { rootMargin: "-50% 0px -50% 0px" });
     sections.forEach(section => navObserver.observe(section));
 
+    // Recalculate pill position on resize
+    window.addEventListener('resize', () => {
+        const activeLink = document.querySelector('.nav-links a.active');
+        if (activeLink) activateNavLink(activeLink);
+    });
+
     // --- MAIN SCROLL LISTENER ---
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Sticky header & nav-brand visibility
+        // Sticky header
         header.classList.toggle('scrolled', scrollY > 50);
-
-        // Particle visibility
-        handleParticleVisibility();
-
-        // Hero title fade out animation
-        if (heroTitle) {
-            const fadeEnd = 300; // Scroll position where title is fully faded
-            const opacity = Math.max(0, 1 - scrollY / fadeEnd);
-            heroTitle.style.opacity = opacity;
-        }
 
         // Fix for active nav link on last section when scrolled to bottom
         const scrollBuffer = 5;
@@ -152,25 +93,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // --- INTERACTIVE GLARE EFFECT ---
-    const glareElements = document.querySelectorAll('.card, .hero-links md-filled-button, .hero-links md-outlined-button');
-    glareElements.forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            el.style.setProperty('--mouse-x', `${x}px`);
-            el.style.setProperty('--mouse-y', `${y}px`);
-        });
+    // Recalculate pill position on resize
+    window.addEventListener('resize', () => {
+        const activeLink = document.querySelector('.nav-links a.active');
+        activateNavLink(activeLink);
     });
 
     // --- INITIAL PAGE LOAD ---
     updateThemeIcon();
-    loadParticlesTheme();
-    handleParticleVisibility();
-    // Activate the home link on initial load
     const homeLink = document.querySelector('.nav-links a[href="#home"]');
     if (homeLink) {
-        setTimeout(() => activateNavLink(homeLink), 100);
+        setTimeout(() => activateNavLink(homeLink), 150);
     }
+});
+
+// --- ML SCHEMATIC LOADER ANIMATION ---
+function animateSchematic() {
+    if (typeof anime === 'undefined') return;
+
+    const tl = anime.timeline({
+        easing: 'easeOutElastic(1, .8)',
+        duration: 1000,
+    });
+
+    tl
+    .add({
+        targets: '#ml-schematic-svg .structure-lines path, #ml-schematic-svg .structure-lines rect, #ml-schematic-svg .structure-lines circle, #ml-schematic-svg .structure-lines line',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        delay: anime.stagger(150)
+    })
+    .add({
+        targets: '#ml-schematic-svg .node-points circle',
+        scale: [0, 1],
+        opacity: [0, 1],
+        duration: 800,
+        delay: anime.stagger(50),
+        offset: '-=1000'
+    })
+    .add({
+        targets: '#ml-schematic-svg .data-streams path',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 1200,
+        delay: anime.stagger(100),
+        offset: '-=800'
+    });
+}
+
+window.addEventListener('load', () => {
+    animateSchematic();
 });

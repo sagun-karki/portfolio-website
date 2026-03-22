@@ -2,7 +2,7 @@
   "profile": {
     "name": "Sagun Karki",
     "title": "Data Scientist",
-    "education": "B.S. in Computer Science and Data Science, Minor in Mathematics | University of Nebraska-Lincoln (Expected May 2026)",
+    "education": "B.S. in Computer Science and Data Science, Minor in Mathematics | University of Nebraska-Lincoln (May 2026)",
     "about": "I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am passionate about leveraging data to build intelligent applications and derive actionable insights. My core expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to model training and inference.",
     "socials": [
       {
@@ -38,6 +38,13 @@
       "logo": "nwc.svg",
       "duration": "Feb 2024 – Jan 2025",
       "description": "Built a DNN for corn yield prediction using 20+ years of historical data, achieving 82% accuracy through feature engineering and PCA."
+    },
+    {
+      "role": "Undergraduate Research Assistant",
+      "company": "University of Nebraska-Lincoln",
+      "logo": "nebraska-n.jpg",
+      "duration": "Aug 2022 – August 2024",
+      "description": ""
     }
   ],
   "projects": [
@@ -86,20 +93,62 @@
       ]
     },
     "logos": [
-      { "name": "Python", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-      { "name": "R", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" },
-      { "name": "JavaScript", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { "name": "Bash", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" },
-      { "name": "SQL", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { "name": "TensorFlow", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
-      { "name": "PyTorch", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
-      { "name": "Pandas", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-      { "name": "NumPy", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-      { "name": "Git", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-      { "name": "GitHub", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-      { "name": "Docker", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { "name": "Google Cloud", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
-      { "name": "Linux", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" }
+      {
+        "name": "Python",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+      },
+      {
+        "name": "R",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"
+      },
+      {
+        "name": "JavaScript",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+      },
+      {
+        "name": "Bash",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+      },
+      {
+        "name": "SQL",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+      },
+      {
+        "name": "TensorFlow",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+      },
+      {
+        "name": "PyTorch",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+      },
+      {
+        "name": "Pandas",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"
+      },
+      {
+        "name": "NumPy",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"
+      },
+      {
+        "name": "Git",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+      },
+      {
+        "name": "Docker",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+      },
+      {
+        "name": "Google Cloud",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+      },
+      {
+        "name": "Linux",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+      }
     ]
   },
   "publications": [
