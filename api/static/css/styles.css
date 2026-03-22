@@ -2,53 +2,54 @@
    1. VARIABLES & THEME SETUP — Warm Organic Minimalism
    ========================================================================== */
 :root {
-    /* Layout */
+    /* Layout constants */
     --container-width: 1300px;
     --container-width-narrow: 1020px;
     --container-padding: 2rem;
-    --border-radius: 32px;
-    --border-radius-sm: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
     --spacing-unit: 1rem;
     --header-height: 65px;
-    --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    /* Warm Earth Light Theme */
-    --color-background: #F2F0ED;  /* Soft taupe/stone */
+    /* Base - Light Version of Cinder & Slate (Ash & Fog) */
+    --color-bg: #F5F5F5;
     --color-surface: #FFFFFF;
-    --color-primary: #1C1C1C;
-    --color-on-primary: #F2F0ED;
-    --color-text-primary: #1C1C1C;       /* Obsidian */
-    --color-text-secondary: #5E5E5E;     /* Warm gray */
-    --color-text-tertiary: #A3AD9E;      /* Muted sage */
-    --color-border: rgba(28, 28, 28, 0.08);
-    --color-border-hover: rgba(28, 28, 28, 0.18);
-    --color-highlight: #4A5D4E;          /* Deep sage accent */
-    --color-nav-pill: #1C1C1C;
-    --color-nav-pill-text: #F2F0ED;
-    --color-card-bg: #FFFFFF;
-    --color-card-shadow: none;
-    --color-card-shadow-hover: none;
-    --color-nav-track: rgba(28, 28, 28, 0.06);
+    --color-text: #1A1A19;
+    --color-text-muted: #555555;
+    --color-primary: #E67E22;
+    --color-secondary: #2980B9;
+    --color-border: #E0E0E0;
+    --color-nav-bg: rgba(255, 255, 255, 0.85);
+
+    /* Mappings for consistency */
+    --color-background: var(--color-bg);
+    --color-text-primary: var(--color-text);
+    --color-text-secondary: var(--color-text-muted);
+    --color-text-tertiary: #888888;
+    --color-accent-primary: var(--color-primary);
+    --color-accent-secondary: var(--color-secondary);
+    --color-card-bg: var(--color-surface);
 }
 
 .dark-theme {
-    /* Warm Earth Dark Theme */
-    --color-background: #161615;
-    --color-surface: #1F1F1D;
-    --color-primary: #F2F0ED;
-    --color-on-primary: #161615;
-    --color-text-primary: #F2F0ED;
-    --color-text-secondary: #B8B4AD;
-    --color-text-tertiary: #8F8B84;
-    --color-border: rgba(242, 240, 237, 0.12);
-    --color-border-hover: rgba(242, 240, 237, 0.22);
-    --color-highlight: #A3AD9E;
-    --color-nav-pill: #F2F0ED;
-    --color-nav-pill-text: #161615;
-    --color-card-bg: #1F1F1D;
-    --color-card-shadow: none;
-    --color-card-shadow-hover: none;
-    --color-nav-track: rgba(242, 240, 237, 0.08);
+    /* Cinder & Slate (Default/Primary Vibe) */
+    --color-bg: #1A1A19;       /* Deep Slate */
+    --color-surface: #242423;  /* Cinder Gray */
+    --color-text: #E0E0E0;     /* Off-White */
+    --color-text-muted: #A0A0A0;
+    --color-primary: #E67E22;  /* Burnt Orange */
+    --color-secondary: #3498DB; /* Sky Blue */
+    --color-border: #333332;
+    --color-nav-bg: rgba(36, 36, 35, 0.85);
+
+    --color-background: var(--color-bg);
+    --color-text-primary: var(--color-text);
+    --color-text-secondary: var(--color-text-muted);
+    --color-text-tertiary: #6B6B6B;
+    --color-accent-primary: var(--color-primary);
+    --color-accent-secondary: var(--color-secondary);
+    --color-card-bg: var(--color-surface);
 }
 
 /* ==========================================================================
@@ -80,7 +81,7 @@ body {
 }
 
 ::selection {
-    background-color: var(--color-highlight);
+    background-color: var(--color-accent-primary);
     color: #ffffff;
 }
 
@@ -114,21 +115,26 @@ main {
 /* Removed .main-header.scrolled as it's handled via JS-driven scale/position */
 
 .main-nav {
-    background: rgba(242, 240, 237, 0.7); /* Stone color with transparency */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 999px; /* The "Pill" shape */
+    background: var(--color-nav-bg);
+    /* Subtle noise texture for a premium "textured" feel */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.05'/%3E%3C/svg%3E");
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill); /* The "Pill" shape */
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* Soft, natural shadow */
+    box-shadow: none; /* Removed drop shadow completely */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark-theme .main-nav {
-    background: rgba(22, 22, 21, 0.7);
-    border: 1px solid rgba(242, 240, 237, 0.1);
+    background: var(--color-nav-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.03'/%3E%3C/svg%3E");
+    border: 1px solid var(--color-border);
+    box-shadow: none; /* Removed drop shadow completely */
 }
 
 .page-content {
@@ -192,7 +198,7 @@ main {
 }
 
 .nav-brand:hover {
-    color: var(--color-highlight);
+    color: var(--color-accent-primary);
 }
 
 /* Nav with subtle track background */
@@ -202,7 +208,7 @@ main {
     gap: 0.5rem;
     background: transparent !important;
     padding: 4px;
-    border-radius: 999px;
+    border-radius: var(--border-radius-pill);
 }
 
 .nav-links a {
@@ -213,21 +219,17 @@ main {
     font-size: 0.8rem;
     padding: 0.5rem 1.15rem;
     letter-spacing: 0.01em;
-    border-radius: 999px;
+    border-radius: var(--border-radius-pill);
     transition: color 0.3s ease;
     z-index: 1;
 }
 
-.nav-links a:hover {
-    color: var(--color-text-primary);
+.nav-links a:hover:not(.active) {
+    color: var(--color-accent-primary);
 }
 
 .nav-links a.active {
-    color: var(--color-text-primary);
-}
-
-.nav-links a.active {
-    color: var(--color-background);
+    color: #FFFFFF !important;
 }
 
 /* The sliding pill indicator */
@@ -236,12 +238,12 @@ main {
     top: 4px;
     left: 0;
     height: calc(100% - 8px);
-    border-radius: 999px;
-    background: var(--color-text-primary); /* Dark Charcoal in light, Light Stone in dark */
-    transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1); /* Custom "flow" timing */
+    border-radius: var(--radius-pill);
+    background: var(--color-primary) !important;
+    transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0;
     z-index: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
 }
 
 .nav-links a.active ~ .nav-indicator,
@@ -262,8 +264,41 @@ main {
     transition: color 0.2s ease;
 }
 
-.social-links a:hover {
-    color: var(--color-text-primary);
+.social-links a:hover,
+.footer-content a:hover {
+    color: var(--color-accent-primary);
+}
+
+/* Global Link Underline Effect for Text Links */
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a) {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background-color: var(--color-accent-primary);
+    transform: scaleX(0.3);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+    opacity: 0.6;
+}
+
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a):hover {
+    color: var(--color-accent-primary);
+}
+
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a):hover::after {
+    transform: scaleX(1);
+    opacity: 1;
 }
 
 .hero-socials svg,
@@ -296,6 +331,11 @@ main {
 
 .dark-theme .theme-toggle md-icon,
 .dark-theme .hamburger-button md-icon {
+    color: var(--color-text);
+}
+
+.theme-toggle md-icon,
+.hamburger-button md-icon {
     color: var(--color-text-primary);
 }
 
@@ -357,9 +397,9 @@ main {
 
 .hero-subtitle {
     font-size: 1.15rem;
-    color: var(--color-text-secondary);
+    color: var(--color-primary);
     margin: 1.25rem 0 0 0;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.6;
 }
 
@@ -405,7 +445,7 @@ main {
 }
 
 .hero-socials a:hover {
-    color: var(--color-highlight);
+    color: var(--color-accent-primary);
     transform: translateY(-2px);
 }
 
@@ -414,7 +454,18 @@ main {
     height: 22px;
 }
 
-/* Hero Buttons — Rounded & Warm */
+md-filled-button {
+    --md-filled-button-container-color: var(--color-primary);
+    --md-filled-button-label-text-color: #FFFFFF;
+    --md-filled-button-hover-container-color: var(--color-primary);
+}
+
+md-outlined-button {
+    --md-outlined-button-label-text-color: var(--color-secondary);
+    --md-outlined-button-outline-color: var(--color-secondary);
+    --md-outlined-button-hover-outline-color: var(--color-secondary);
+}
+
 .hero-links md-filled-button,
 .hero-links md-outlined-button {
     font-family: var(--font-sans);
@@ -424,49 +475,36 @@ main {
     --md-outlined-button-label-text-weight: 600;
     --md-filled-button-label-text-size: 0.875rem;
     --md-outlined-button-label-text-size: 0.875rem;
-    --md-sys-shape-corner-full: 999px;
+    --md-sys-shape-corner-full: var(--radius-pill);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
 
-.hero-links md-filled-button {
-    --md-filled-button-container-color: var(--color-text-primary);
-    --md-filled-button-label-text-color: var(--color-background);
-    --md-filled-button-hover-container-color: var(--color-highlight);
-    --md-filled-button-hover-label-text-color: #ffffff;
-    --md-filled-button-container-elevation: 0;
-    --md-filled-button-hover-container-elevation: 0;
-    --md-filled-button-focus-container-elevation: 0;
-    --md-filled-button-pressed-container-elevation: 0;
-}
-
-.hero-links md-outlined-button {
-    --md-outlined-button-label-text-color: var(--color-text-primary);
-    --md-outlined-button-outline-color: var(--color-border);
-    background-color: transparent;
-    transition: all 0.2s ease;
-}
-
 .hero-links md-outlined-button:hover {
-    --md-outlined-button-outline-color: var(--color-text-primary);
-    background-color: transparent;
+    background-color: rgba(107, 122, 143, 0.05);
 }
 
 /* ==========================================================================
    7. SECTIONS
    ========================================================================== */
 .section-title {
-    text-align: left;
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-top: 0;
-    margin-bottom: 2rem;
-    color: var(--color-text-primary);
-    padding-bottom: 0;
-    border-bottom: none;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    text-align: left;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background: var(--color-border);
 }
 
 /* ==========================================================================
@@ -475,16 +513,14 @@ main {
 .card {
     position: relative;
     overflow: visible;
-    background-color: var(--color-card-bg);
+    background-color: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-lg);
     padding: 2.5rem;
     box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 .card.is-visible,
@@ -494,11 +530,9 @@ main {
 }
 
 .card:hover {
-    box-shadow: none;
-    border-color: var(--color-border-hover);
-    background-color: var(--color-card-bg);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    border-color: var(--color-primary);
+    background-color: var(--color-surface);
+    box-shadow: 0 0 20px rgba(230, 126, 34, 0.1);
 }
 
 .card-title {
@@ -539,12 +573,6 @@ main {
 
 .card-item-title a {
     color: inherit;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.card-item-title a:hover {
-    color: var(--color-highlight);
 }
 
 .card-item-subtitle {
@@ -564,7 +592,7 @@ main {
 
 #projects .card-item-meta {
     font-weight: 600;
-    color: var(--color-highlight);
+    color: var(--color-primary);
     text-transform: none;
 }
 
@@ -669,14 +697,14 @@ main {
 }
 
 .timeline-item {
-    width: 100%;
-    left: 0;
+    width: 100% !important;
+    left: 0 !important;
     padding: 0;
     position: relative;
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.6s ease 0.05s, transform 0.6s ease 0.05s;
-    margin-bottom: 0;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 1.5rem;
 }
 
 .timeline-item.is-visible {
@@ -684,79 +712,66 @@ main {
     transform: translateY(0);
 }
 
-/* Reset nth-child from legacy alternating layout */
-.timeline-item:nth-child(odd),
-.timeline-item:nth-child(even) {
-    left: 0;
-    width: 100%;
-    text-align: left;
-}
-
-/* Each experience entry — soft rounded container with grid */
+/* Each experience entry — strict 4-column horizontal grid with container fix */
 .timeline-content.card {
     display: grid;
-    grid-template-columns: 60px 240px 1fr 140px;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-        "logo title    desc date"
-        "logo subtitle desc date";
-    column-gap: 2rem;
-    row-gap: 0.35rem;
-    align-items: start;
+    grid-template-columns: 60px 220px 1fr 120px;
+    align-items: center;
+    gap: 2rem;
     padding: 2rem;
-    background: var(--color-card-bg);
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    box-shadow: none;
+    border-radius: var(--radius-lg);
+    transition: border-color 0.3s ease;
 }
 
 .timeline-content.card .card-logo {
-    grid-area: logo;
     margin: 0;
     max-height: 60px;
     width: 60px;
     object-fit: contain;
-    border-radius: var(--border-radius-sm);
-    align-self: start;
+    border-radius: 12px;
+}
+
+.timeline-content.card .card-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .timeline-content.card .card-item-title {
-    grid-area: title;
     margin: 0;
     font-weight: 600;
     font-size: 1.1rem;
+    color: var(--color-primary);
 }
 
 .timeline-content.card .card-item-subtitle {
-    grid-area: subtitle;
     margin: 0;
-    color: var(--color-text-secondary);
-    font-size: 0.925rem;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .timeline-content.card .card-item-meta {
-    grid-area: date;
     text-align: right;
     margin: 0;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-    color: var(--color-text-tertiary);
-    font-size: 0.8rem;
+    color: var(--color-secondary);
+    font-size: 0.85rem;
     font-weight: 500;
-    align-self: start;
 }
 
 .timeline-content.card .card-item-desc {
-    grid-area: desc;
     margin: 0;
-    max-width: 100%;
+    color: var(--color-text-muted);
+    font-size: 0.925rem;
+    line-height: 1.6;
 }
 
 .timeline-item:hover .timeline-content.card {
-    box-shadow: none;
-    border-color: var(--color-border-hover);
+    border-color: var(--color-primary);
     transform: none;
-    background-color: var(--color-card-bg);
+    box-shadow: 0 0 20px rgba(230, 126, 34, 0.1);
 }
 
 /* Remove particles container */
@@ -819,20 +834,15 @@ main {
         top: calc(100% + 0.75rem);
         left: 0;
         width: 100%;
-        background: rgba(242, 240, 237, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: var(--color-nav-bg);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid var(--color-border);
         flex-direction: column;
         align-items: flex-start;
         padding: 1.5rem;
         border-radius: 28px;
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-    }
-
-    .dark-theme .nav-links {
-        background: rgba(22, 22, 21, 0.95);
-        border: 1px solid rgba(242, 240, 237, 0.1);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
     }
 
     .nav-indicator {
@@ -855,11 +865,8 @@ main {
         text-align: left;
         font-size: 1rem;
         font-weight: 600;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .dark-theme .nav-links a {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid var(--color-border);
+        color: var(--color-text);
     }
 
     .nav-links a:last-child {
@@ -868,23 +875,18 @@ main {
 
     .timeline-content.card {
         grid-template-columns: 1fr;
-        grid-template-areas:
-            "logo"
-            "title"
-            "subtitle"
-            "date"
-            "desc";
-        gap: 0.35rem;
+        gap: 0.75rem;
         padding: 1.5rem;
+        text-align: left;
     }
 
     .timeline-content.card .card-logo {
-        max-height: 44px;
-        width: 44px;
+        margin-bottom: 0.5rem;
     }
 
     .timeline-content.card .card-item-meta {
         text-align: left;
+        margin-top: 0.25rem;
     }
 
     .timeline-item {

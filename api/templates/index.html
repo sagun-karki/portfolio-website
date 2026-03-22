@@ -35,9 +35,9 @@
     <svg id="ml-schematic-svg" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="stream-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="var(--color-highlight)" stop-opacity="0" />
-          <stop offset="50%" stop-color="var(--color-highlight)" stop-opacity="1" />
-          <stop offset="100%" stop-color="var(--color-highlight)" stop-opacity="0" />
+          <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0" />
+          <stop offset="50%" stop-color="var(--color-primary)" stop-opacity="1" />
+          <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0" />
         </linearGradient>
       </defs>
 
@@ -64,7 +64,7 @@
       <g class="data-streams" stroke="url(#stream-gradient)" stroke-width="3" fill="none" stroke-linecap="round">
         <path d="M 150 200 Q 275 175 400 150 T 650 250" />
         <path d="M 150 400 Q 275 350 400 300 T 650 350" stroke-width="2" />
-        <path d="M 50 300 C 200 500, 600 100, 750 300" stroke-dasharray="5 10" stroke-width="1.5" stroke="var(--color-highlight)" stroke-opacity="0.6" />
+        <path d="M 50 300 C 200 500, 600 100, 750 300" stroke-dasharray="5 10" stroke-width="1.5" stroke="var(--color-secondary)" stroke-opacity="0.6" />
       </g>
 
       <!-- Nodes / Junctions -->
@@ -76,11 +76,11 @@
         <circle cx="150" cy="200" r="12" stroke="currentColor" stroke-opacity="0.3" fill="none" />
 
         <!-- Layer 2 -->
-        <circle cx="400" cy="150" r="8" fill="var(--color-highlight)" />
-        <circle cx="400" cy="300" r="8" fill="var(--color-highlight)" />
-        <circle cx="400" cy="450" r="8" fill="var(--color-highlight)" />
-        <circle cx="400" cy="300" r="16" stroke="var(--color-highlight)" stroke-opacity="0.4" fill="none" />
-        <circle cx="400" cy="300" r="24" stroke="var(--color-highlight)" stroke-opacity="0.2" fill="none" stroke-dasharray="2 4"/>
+        <circle cx="400" cy="150" r="8" fill="var(--color-primary)" />
+        <circle cx="400" cy="300" r="8" fill="var(--color-primary)" />
+        <circle cx="400" cy="450" r="8" fill="var(--color-primary)" />
+        <circle cx="400" cy="300" r="16" stroke="var(--color-primary)" stroke-opacity="0.4" fill="none" />
+        <circle cx="400" cy="300" r="24" stroke="var(--color-primary)" stroke-opacity="0.2" fill="none" stroke-dasharray="2 4"/>
 
         <!-- Layer 3 -->
         <circle cx="650" cy="250" r="6" fill="currentColor" fill-opacity="0.9" />
@@ -106,10 +106,12 @@
       <div class="timeline-item">
         <div class="timeline-content card">
           <img src="{{ url_for('static', filename='images/' + job.logo) }}" alt="{{ job.company }}" class="card-logo">
-          <h3 class="card-item-title">{{ job.role }}</h3>
-          <p class="card-item-subtitle">{{ job.company }}</p>
-          <p class="card-item-meta">{{ job.duration }}</p>
+          <div class="card-item-header">
+            <h3 class="card-item-title">{{ job.role }}</h3>
+            <p class="card-item-subtitle">{{ job.company }}</p>
+          </div>
           <p class="card-item-desc">{{ job.description }}</p>
+          <p class="card-item-meta">{{ job.duration }}</p>
         </div>
       </div>
       {% endfor %}
