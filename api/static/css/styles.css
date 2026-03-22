@@ -20,7 +20,7 @@
     --color-primary: #E67E22;
     --color-secondary: #2980B9;
     --color-border: #E0E0E0;
-    --color-nav-bg: rgba(255, 255, 255, 0.85);
+    --color-nav-bg: rgba(255, 255, 255, 0.94);
 
     /* Mappings for consistency */
     --color-background: var(--color-bg);
@@ -41,7 +41,7 @@
     --color-primary: #E67E22;  /* Burnt Orange */
     --color-secondary: #3498DB; /* Sky Blue */
     --color-border: #333332;
-    --color-nav-bg: rgba(36, 36, 35, 0.85);
+    --color-nav-bg: rgba(36, 36, 35, 0.94);
 
     --color-background: var(--color-bg);
     --color-text-primary: var(--color-text);
@@ -115,26 +115,33 @@ main {
 /* Removed .main-header.scrolled as it's handled via JS-driven scale/position */
 
 .main-nav {
-    background: var(--color-nav-bg);
-    /* Subtle noise texture for a premium "textured" feel */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.05'/%3E%3C/svg%3E");
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill); /* The "Pill" shape */
-    padding: 0.5rem 1rem;
+    background: transparent;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: none; /* Removed drop shadow completely */
+    box-shadow: none;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dark-theme .main-nav {
+.main-header.scrolled .main-nav {
+    background: var(--color-nav-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.05'/%3E%3C/svg%3E");
+    backdrop-filter: blur(64px);
+    -webkit-backdrop-filter: blur(64px);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+}
+
+.dark-theme.main-header.scrolled .main-nav,
+.dark-theme .main-header.scrolled .main-nav {
     background: var(--color-nav-bg);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.03'/%3E%3C/svg%3E");
-    border: 1px solid var(--color-border);
-    box-shadow: none; /* Removed drop shadow completely */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .page-content {
@@ -206,7 +213,7 @@ main {
     position: relative;
     display: flex;
     gap: 0.5rem;
-    background: transparent !important;
+    background: transparent;
     padding: 4px;
     border-radius: var(--border-radius-pill);
 }
@@ -835,8 +842,8 @@ md-outlined-button {
         left: 0;
         width: 100%;
         background: var(--color-nav-bg);
-        backdrop-filter: blur(40px);
-        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(80px);
+        -webkit-backdrop-filter: blur(80px);
         border: 1px solid var(--color-border);
         flex-direction: column;
         align-items: flex-start;
