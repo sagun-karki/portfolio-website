@@ -1,0 +1,125 @@
+{
+  "profile": {
+    "name": "Sagun Karki",
+    "title": "Data Scientist",
+    "education": "B.S. in Computer Science and Data Science, Minor in Mathematics | University of Nebraska-Lincoln (Expected May 2026)",
+    "about": "I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am passionate about leveraging data to build intelligent applications and derive actionable insights. My core expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to model training and inference.",
+    "socials": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/sagunkarki/",
+        "icon": "#icon-linkedin"
+      },
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/sagun-karki",
+        "icon": "#icon-github"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Data Analyst",
+      "company": "Nebraska Public Media",
+      "logo": "NPM-logo.original.png",
+      "duration": "Jan 2025 – Present",
+      "description": "Redesigned ETL pipelines with BigQuery, cutting runtime by 65% and enabling near real-time BI reporting for content and audience insights."
+    },
+    {
+      "role": "Data Science Intern",
+      "company": "Raikes School (Allo Fiber)",
+      "logo": "allo-fiber.svg",
+      "duration": "Sep 2024 – May 2025",
+      "description": "Developed an ensemble fraud detection system (HMM + SVM) for 40K+ IoT routers, reducing undetected fraudulent activities in SmartTown networks."
+    },
+    {
+      "role": "Machine Learning Intern",
+      "company": "Nebraska Water Center",
+      "logo": "nwc.svg",
+      "duration": "Feb 2024 – Jan 2025",
+      "description": "Built a DNN for corn yield prediction using 20+ years of historical data, achieving 82% accuracy through feature engineering and PCA."
+    }
+  ],
+  "projects": [
+    {
+      "title": "AI-Powered FAQ System",
+      "technologies": "Python, Flask, FAISS, RAG",
+      "description": "Led a team to build an AI assistant using a RAG pipeline with FAISS vector search for accurate, citation-backed answers.",
+      "url": "https://github.com/sagun-karki/CSCE410_final_project"
+    },
+    {
+      "title": "Depression Detection",
+      "technologies": "Python, Jupyter, XGBoost",
+      "description": "Optimized an XGBoost classifier via hyperparameter tuning to achieve 94.5% accuracy in classifying signals from a Kaggle dataset."
+    },
+    {
+      "title": "Transit System Analysis",
+      "technologies": "Python, Mapillary API, GraphQL",
+      "description": "Engineered a data pipeline to process 30k+ images, correlating crash-risk signals with public transit data to map high-risk zones."
+    }
+  ],
+  "skills": {
+    "categories": {
+      "Languages": [
+        "Python",
+        "SQL",
+        "R",
+        "Bash",
+        "JavaScript"
+      ],
+      "ML/AI & Data": [
+        "Scikit-learn",
+        "TensorFlow",
+        "PyTorch",
+        "XGBoost",
+        "Hugging Face",
+        "FAISS",
+        "Pandas",
+        "NumPy",
+        "Power BI"
+      ],
+      "Tools & Platforms": [
+        "Git",
+        "GitHub Actions",
+        "Docker",
+        "Google Cloud (BigQuery, Dataform)"
+      ]
+    },
+    "logos": [
+      { "name": "Python", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { "name": "R", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" },
+      { "name": "JavaScript", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { "name": "Bash", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" },
+      { "name": "SQL", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+      { "name": "TensorFlow", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
+      { "name": "PyTorch", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+      { "name": "Pandas", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+      { "name": "NumPy", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+      { "name": "Git", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { "name": "GitHub", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+      { "name": "Docker", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { "name": "Google Cloud", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+      { "name": "Linux", "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" }
+    ]
+  },
+  "publications": [
+    {
+      "title": "The US Economy as a Network",
+      "authors": "J Hawkins, S Karki",
+      "description": "Comparison Across Economic and Environmental Metrics. Available at SSRN.",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4701574"
+    },
+    {
+      "title": "A dynamic approach for corn yield prediction to ensure agricultural resilience in the U.S. Midwest",
+      "authors": "A Mitra, S Karki, Et Al.",
+      "description": "Neural network–based corn yield forecasting with adaptive integration of weather and historical yield data.",
+      "url": "https://www.sciencedirect.com/science/article/pii/S277237552500526X"
+    },
+    {
+      "title": "Better Safety Analyses through Smarter Data",
+      "authors": "M Elayan, S Karki, J Hawkins",
+      "description": "Adding Open-Street-View and Traffic-Calibrated LBS Data to Pedestrian Crash Analysis in Lincoln, NE.",
+      "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C28&q=Better+Safety+Analyses+through+Smarter+Data%3A+Adding+Open-Street-View+and+Traffic-Calibrated+LBS+Data+to+Pedestrian+Crash+Analysis+in+Lincoln%2C+NE&btnG="
+    }
+  ]
+}

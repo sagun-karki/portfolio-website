@@ -73,14 +73,13 @@
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>&copy; 2025 Sagun Karki. All rights reserved.</p>
+      <p>&copy; 2025 {{ site_data.profile.name }}. All rights reserved.</p>
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/sagunkarki/" target="_blank" aria-label="LinkedIn">
-          <svg><use href="#icon-linkedin"></use></svg>
+        {% for social in site_data.profile.socials %}
+        <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}">
+          <svg><use href="{{ social.icon }}"></use></svg>
         </a>
-        <a href="https://github.com/sagun-karki" target="_blank" aria-label="GitHub">
-          <svg><use href="#icon-github"></use></svg>
-        </a>
+        {% endfor %}
       </div>
     </div>
   </footer>

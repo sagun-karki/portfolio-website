@@ -3,10 +3,9 @@
 {% block content %}
 <section id="home" class="hero">
   <div class="hero-text">
-    <h1 class="hero-title">Sagun Karki</h1>
-    <p class="hero-subtitle">Data Scientist</p>
-    <p class="hero-edu">B.S. in Computer Science and Data Science, Minor in Mathematics <br> University of
-      Nebraska-Lincoln (Expected May 2026)</p>
+    <h1 class="hero-title">{{ site_data.profile.name }}</h1>
+    <p class="hero-subtitle">{{ site_data.profile.title }}</p>
+    <p class="hero-edu">{{ site_data.profile.education | replace('|', '<br>') | safe }}</p>
     <div class="hero-links">
       <a href="#projects">
         <md-filled-button>View Projects</md-filled-button>
@@ -16,12 +15,13 @@
       </a>
     </div>
     <div class="hero-socials">
-      <a href="https://www.linkedin.com/in/sagunkarki/" target="_blank" aria-label="LinkedIn">
-        <svg><use href="#icon-linkedin"></use></svg>
+      {% for social in site_data.profile.socials %}
+      <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}">
+        <svg>
+          <use href="{{ social.icon }}"></use>
+        </svg>
       </a>
-      <a href="https://github.com/sagun-karki" target="_blank" aria-label="GitHub">
-        <svg><use href="#icon-github"></use></svg>
-      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -30,139 +30,81 @@
   <section id="about" class="about-section">
     <div class="card">
       <h2 class="card-title">About Me</h2>
-      <p>I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am
-        passionate about leveraging data to build intelligent applications and derive actionable insights. My core
-        expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to
-        model training and inference.</p>
+      <p>{{ site_data.profile.about }}</p>
     </div>
   </section>
 
   <section id="experience">
     <h2 class="section-title">Experience</h2>
     <div class="timeline">
+      {% for job in site_data.experience %}
       <div class="timeline-item">
         <div class="timeline-content card">
-          <img src="{{ url_for('static', filename='images/NPM-logo.original.png') }}" alt="Nebraska Public Media" class="card-logo">
-          <h3 class="card-item-title">Data Analyst</h3>
-          <p class="card-item-subtitle">Nebraska Public Media</p>
-          <p class="card-item-meta">Jan 2025 – Present</p>
-          <p class="card-item-desc">Redesigned ETL pipelines with BigQuery, cutting runtime by 65% and enabling near
-            real-time BI reporting for content and audience insights.</p>
+          <img src="{{ url_for('static', filename='images/' + job.logo) }}" alt="{{ job.company }}" class="card-logo">
+          <h3 class="card-item-title">{{ job.role }}</h3>
+          <p class="card-item-subtitle">{{ job.company }}</p>
+          <p class="card-item-meta">{{ job.duration }}</p>
+          <p class="card-item-desc">{{ job.description }}</p>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-content card">
-          <img src="{{ url_for('static', filename='images/allo-fiber.svg') }}" alt="Allo Fiber" class="card-logo">
-          <h3 class="card-item-title">Data Science Intern</h3>
-          <p class="card-item-subtitle">Raikes School (Allo Fiber)</p>
-          <p class="card-item-meta">Sep 2024 – May 2025</p>
-          <p class="card-item-desc">Developed an ensemble fraud detection system (HMM + SVM) for 40K+ IoT routers,
-            reducing undetected fraudulent activities in SmartTown networks.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-content card">
-          <img src="{{ url_for('static', filename='images/nwc.svg') }}" alt="Nebraska Water Center" class="card-logo">
-          <h3 class="card-item-title">Machine Learning Intern</h3>
-          <p class="card-item-subtitle">Nebraska Water Center</p>
-          <p class="card-item-meta">Feb 2024 – Jan 2025</p>
-          <p class="card-item-desc">Built a DNN for corn yield prediction using 20+ years of historical data, achieving
-            82% accuracy through feature engineering and PCA.</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </section>
 
   <section id="projects">
     <h2 class="section-title">Projects</h2>
     <div class="content-grid">
+      {% for project in site_data.projects %}
       <div class="card">
         <h3 class="card-item-title">
-          <a href="https://github.com/sagun-karki/CSCE410_final_project" target="_blank">AI-Powered FAQ System 🔗</a>
+          {% if project.url %}
+          <a href="{{ project.url }}" target="_blank">{{ project.title }} 🔗</a>
+          {% else %}
+          {{ project.title }}
+          {% endif %}
         </h3>
-        <p class="card-item-meta">Python, Flask, FAISS, RAG</p>
-        <p class="card-item-desc">Led a team to build an AI assistant using a RAG pipeline with FAISS vector search for
-          accurate, citation-backed answers.</p>
+        <p class="card-item-meta">{{ project.technologies }}</p>
+        <p class="card-item-desc">{{ project.description }}</p>
       </div>
-      <div class="card">
-        <h3 class="card-item-title">Depression Detection</h3>
-        <p class="card-item-meta">Python, Jupyter, XGBoost</p>
-        <p class="card-item-desc">Optimized an XGBoost classifier via hyperparameter tuning to achieve 94.5% accuracy in
-          classifying signals from a Kaggle dataset.</p>
-      </div>
-      <div class="card">
-        <h3 class="card-item-title">Transit System Analysis</h3>
-        <p class="card-item-meta">Python, Mapillary API, GraphQL</p>
-        <p class="card-item-desc">Engineered a data pipeline to process 30k+ images, correlating crash-risk signals with
-          public transit data to map high-risk zones.</p>
-      </div>
+      {% endfor %}
     </div>
   </section>
 
   <section id="skills">
     <h2 class="section-title">Technical Skills</h2>
     <div class="card skills-card">
+      {% for category, items in site_data.skills.categories.items() %}
       <div class="skill-category">
-        <h4 class="skill-title">Languages</h4>
-        <p>Python, SQL, R, Bash, JavaScript</p>
+        <h4 class="skill-title">{{ category }}</h4>
+        <p>{{ items | join(', ') }}</p>
       </div>
-      <div class="skill-category">
-        <h4 class="skill-title">ML/AI & Data</h4>
-        <p>Scikit-learn, TensorFlow, PyTorch, XGBoost, Hugging Face, FAISS, Pandas, NumPy, Power BI</p>
-      </div>
-      <div class="skill-category">
-        <h4 class="skill-title">Tools & Platforms</h4>
-        <p>Git, GitHub Actions, Docker, Google Cloud (BigQuery, Dataform)</p>
-      </div>
+      {% endfor %}
     </div>
     <div class="skill-logos">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" height="40">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" height="40">
+      {% for logo in site_data.skills.logos %}
+      <img src="{{ logo.url }}" alt="{{ logo.name }}" height="40">
+      {% endfor %}
     </div>
-
   </section>
 
   <section id="publications">
     <h2 class="section-title">Publications</h2>
     <div class="content-grid">
+      {% for pub in site_data.publications %}
       <div class="card">
         <h3 class="card-item-title">
-          <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4701574" target="_blank">The US Economy as a
-            Network 🔗</a>
+          {% if pub.url %}
+          <a href="{{ pub.url }}" target="_blank">{{ pub.title }} 🔗</a>
+          {% else %}
+          {{ pub.title }}
+          {% endif %}
         </h3>
-        <p class="card-item-meta">J Hawkins, S Karki</p>
-        <p class="card-item-desc">Comparison Across Economic and Environmental Metrics. Available at SSRN.</p>
+        <p class="card-item-meta">{{ pub.authors }}</p>
+        <p class="card-item-desc">{{ pub.description }}</p>
       </div>
-      <div class="card">
-        <h3 class="card-item-title">
-          <a href="https://www.sciencedirect.com/science/article/pii/S277237552500526X" target="_blank">A dynamic
-            approach for corn yield prediction to ensure agricultural resilience in the U.S. Midwest 🔗</a>
-        </h3>
-        <p class="card-item-meta">A Mitra, S Karki, Et Al.</p>
-        <p class="card-item-desc">Neural network–based corn yield forecasting with adaptive integration of weather and
-          historical yield data.</p>
-      </div>
-      <div class="card">
-        <h3 class="card-item-title">
-          <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C28&q=Better+Safety+Analyses+through+Smarter+Data%3A+Adding+Open-Street-View+and+Traffic-Calibrated+LBS+Data+to+Pedestrian+Crash+Analysis+in+Lincoln%2C+NE&btnG=" target="_blank">Better Safety Analyses through Smarter Data 🔗</a>
-        </h3>
-        <p class="card-item-meta">M Elayan, S Karki, J Hawkins</p>
-        <p class="card-item-desc">Adding Open-Street-View and Traffic-Calibrated LBS Data to Pedestrian Crash Analysis
-          in Lincoln, NE.</p>
-      </div>
+      {% endfor %}
     </div>
   </section>
+</div>
 </div>
 {% endblock %}
