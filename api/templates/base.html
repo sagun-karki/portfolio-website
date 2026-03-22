@@ -8,9 +8,10 @@
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon.ico') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   <script type="module" src="https://unpkg.com/@material/web/all.js?module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
   <script>
@@ -43,7 +44,7 @@
     </symbol>
   </svg>
   
-  <div id="tsparticles"></div>
+
 
   <header class="main-header">
     <nav class="main-nav">
@@ -73,19 +74,18 @@
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>&copy; 2025 Sagun Karki. All rights reserved.</p>
+      <p>&copy; 2025 {{ site_data.profile.name }}. All rights reserved.</p>
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/sagunkarki/" target="_blank" aria-label="LinkedIn">
-          <svg><use href="#icon-linkedin"></use></svg>
+        {% for social in site_data.profile.socials %}
+        <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}">
+          <svg><use href="{{ social.icon }}"></use></svg>
         </a>
-        <a href="https://github.com/sagun-karki" target="_blank" aria-label="GitHub">
-          <svg><use href="#icon-github"></use></svg>
-        </a>
+        {% endfor %}
       </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 
 </body>
