@@ -81,8 +81,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Sticky header
-        header.classList.toggle('scrolled', scrollY > 50);
+        // Floating pill transition
+        const isScrolled = scrollY > 50;
+        header.classList.toggle('scrolled', isScrolled);
+
+        if (isScrolled) {
+            // Shrink slightly and make more opaque on scroll
+            header.style.transform = 'translateX(-50%) scale(0.95)';
+            header.style.top = '1rem';
+        } else {
+            // Return to natural floating state
+            header.style.transform = 'translateX(-50%) scale(1)';
+            header.style.top = '1.5rem';
+        }
 
         // Fix for active nav link on last section when scrolled to bottom
         const scrollBuffer = 5;

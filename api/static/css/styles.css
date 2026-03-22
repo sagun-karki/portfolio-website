@@ -101,32 +101,34 @@ main {
 }
 
 .main-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    background-color: transparent;
-    border-bottom: 1px solid transparent;
-    transition: background-color 0.4s ease, border-color 0.3s ease, backdrop-filter 0.4s ease;
+    position: fixed;
+    top: 1.5rem; /* The "Detached" gap */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto; /* Shrink to content */
+    min-width: 500px;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.main-header.scrolled {
-    position: fixed;
-    background-color: color-mix(in srgb, var(--color-background) 85%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--color-border);
-}
+/* Removed .main-header.scrolled as it's handled via JS-driven scale/position */
 
 .main-nav {
-    height: var(--header-height);
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
+    background: rgba(242, 240, 237, 0.7); /* Stone color with transparency */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px; /* The "Pill" shape */
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* Soft, natural shadow */
+}
+
+.dark-theme .main-nav {
+    background: rgba(22, 22, 21, 0.7);
+    border: 1px solid rgba(242, 240, 237, 0.1);
 }
 
 .page-content {
@@ -167,29 +169,39 @@ main {
 .nav-brand {
     font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-decoration: none;
     color: var(--color-text-primary);
     letter-spacing: -0.01em;
     opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translateX(-10px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
+    margin-right: 0;
 }
 
 .main-header.scrolled .nav-brand {
     opacity: 1;
-    transform: translateY(0);
+    max-width: 200px;
+    transform: translateX(0);
     pointer-events: auto;
+    margin-right: 1.5rem;
+}
+
+.nav-brand:hover {
+    color: var(--color-highlight);
 }
 
 /* Nav with subtle track background */
 .nav-links {
     position: relative;
     display: flex;
-    gap: 0;
-    background: var(--color-nav-track);
-    padding: 6px;
+    gap: 0.5rem;
+    background: transparent !important;
+    padding: 4px;
     border-radius: 999px;
 }
 
@@ -214,29 +226,30 @@ main {
     color: var(--color-text-primary);
 }
 
-.main-header.scrolled .nav-links a.active {
-    color: var(--color-nav-pill-text);
+.nav-links a.active {
+    color: var(--color-background);
 }
 
 /* The sliding pill indicator */
 .nav-indicator {
     position: absolute;
-    top: 6px;
+    top: 4px;
     left: 0;
-    height: calc(100% - 12px);
+    height: calc(100% - 8px);
     border-radius: 999px;
-    background: var(--color-nav-pill);
-    transition:
-        left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        background-color 0.3s ease;
+    background: var(--color-text-primary); /* Dark Charcoal in light, Light Stone in dark */
+    transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1); /* Custom "flow" timing */
     opacity: 0;
     z-index: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.main-header.scrolled .nav-indicator {
+.nav-links a.active ~ .nav-indicator,
+.nav-links:has(a.active) .nav-indicator {
     opacity: 1;
 }
+
+/* Removed header scrolled nav indicator logic as it is always visible when active now */
 
 .social-links {
     display: flex;
@@ -267,7 +280,8 @@ main {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0rem;
+    margin-left: 1rem;
 }
 
 .theme-toggle {
@@ -757,6 +771,20 @@ main {
     display: none;
 }
 
+@media (max-width: 1024px) {
+    .main-header {
+        min-width: calc(100% - 3rem);
+    }
+    .nav-brand {
+        margin-right: 0;
+        flex-grow: 1;
+        opacity: 1;
+        max-width: none;
+        pointer-events: auto;
+        transform: none;
+    }
+}
+
 @media (min-width: 768px) {
     .skills-card {
         flex-direction: row;
@@ -775,18 +803,36 @@ main {
         font-size: 1rem;
     }
 
+    .main-header {
+        top: 1rem;
+        min-width: calc(100% - 2.5rem);
+    }
+
+    .main-nav {
+        padding: 0.35rem 0.75rem;
+        justify-content: space-between;
+    }
+
     .nav-links {
         display: none;
         position: absolute;
-        top: var(--header-height);
+        top: calc(100% + 0.75rem);
         left: 0;
         width: 100%;
-        background-color: var(--color-background);
-        border-bottom: 1px solid var(--color-border);
+        background: rgba(242, 240, 237, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
         flex-direction: column;
         align-items: flex-start;
-        padding: 1rem var(--container-padding);
-        border-radius: 0;
+        padding: 1.5rem;
+        border-radius: 28px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-theme .nav-links {
+        background: rgba(22, 22, 21, 0.95);
+        border: 1px solid rgba(242, 240, 237, 0.1);
     }
 
     .nav-indicator {
@@ -795,12 +841,29 @@ main {
 
     .nav-links.is-open {
         display: flex;
+        animation: pillFadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes pillFadeInDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .nav-links a {
-        padding: 0.75rem 0;
+        padding: 0.85rem 0;
         width: 100%;
         text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .dark-theme .nav-links a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
     }
 
     .timeline-content.card {
