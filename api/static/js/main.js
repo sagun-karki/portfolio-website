@@ -71,12 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { rootMargin: "-50% 0px -50% 0px" });
     sections.forEach(section => navObserver.observe(section));
 
-    // Recalculate pill position on resize
-    window.addEventListener('resize', () => {
-        const activeLink = document.querySelector('.nav-links a.active');
-        if (activeLink) activateNavLink(activeLink);
-    });
-
     // --- MAIN SCROLL LISTENER ---
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
@@ -107,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Recalculate pill position on resize
     window.addEventListener('resize', () => {
         const activeLink = document.querySelector('.nav-links a.active');
-        activateNavLink(activeLink);
+        if (activeLink) activateNavLink(activeLink);
     });
 
     // --- INITIAL PAGE LOAD ---
