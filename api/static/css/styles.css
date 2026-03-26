@@ -800,10 +800,13 @@ md-outlined-button {
     .nav-brand {
         margin-right: 0;
         flex-grow: 1;
+    }
+    
+    .main-header.scrolled .nav-brand {
         opacity: 1;
-        max-width: none;
+        max-width: 200px;
         pointer-events: auto;
-        transform: none;
+        margin-right: 1.5rem;
     }
 }
 
