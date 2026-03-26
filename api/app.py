@@ -49,7 +49,7 @@ def page_not_found(e):
     """
     Renders a custom 404 error page.
     """
-    return "404 Error: Page Not Found", 404
+    return render_template('404.html'), 404
 
 
 if __name__ == '__main__':

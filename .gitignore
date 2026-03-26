@@ -1,1 +1,1 @@
-Nothing needs to be added to .gitignore since only a source file (404.html) was added without any build artifacts, dependencies, or temporary files.
+Nothing needs to be added to .gitignore since the changes only include source files (.html, .py) which should not be ignored.
