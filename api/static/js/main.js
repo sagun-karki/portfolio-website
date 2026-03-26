@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksContainer = document.querySelector('.nav-links');
     const header = document.querySelector('.main-header');
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('md-icon');
+    const themeIcon = themeToggle.querySelector('.material-symbols-outlined');
     const docElement = document.documentElement;
 
     // --- RESPONSIVE NAVIGATION ---
