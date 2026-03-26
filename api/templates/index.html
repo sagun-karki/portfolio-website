@@ -105,7 +105,7 @@
       {% for job in site_data.experience %}
       <div class="timeline-item">
         <div class="timeline-content card">
-          <img src="{{ url_for('static', filename='images/' + job.logo) }}" alt="{{ job.company }}" class="card-logo">
+          <img src="{{ url_for('static', filename='images/' + job.logo) }}" alt="{{ job.company }}" class="card-logo" loading="lazy" decoding="async">
           <div class="card-item-header">
             <h3 class="card-item-title">{{ job.role }}</h3>
             <p class="card-item-subtitle">{{ job.company }}</p>
@@ -149,7 +149,7 @@
     </div>
     <div class="skill-logos">
       {% for logo in site_data.skills.logos %}
-      <img src="{{ logo.url }}" alt="{{ logo.name }}" height="40">
+      <img src="{{ logo.url }}" alt="{{ logo.name }}" height="40" loading="lazy" decoding="async">
       {% endfor %}
     </div>
   </section>

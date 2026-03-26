@@ -332,18 +332,13 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a)
 
 .theme-toggle md-icon,
 .hamburger-button md-icon {
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     transition: color 0.2s ease;
 }
 
 .dark-theme .theme-toggle md-icon,
 .dark-theme .hamburger-button md-icon {
     color: var(--color-text);
-}
-
-.theme-toggle md-icon,
-.hamburger-button md-icon {
-    color: var(--color-text-primary);
 }
 
 /* ==========================================================================
@@ -800,10 +795,13 @@ md-outlined-button {
     .nav-brand {
         margin-right: 0;
         flex-grow: 1;
+    }
+    
+    .main-header.scrolled .nav-brand {
         opacity: 1;
-        max-width: none;
+        max-width: 200px;
         pointer-events: auto;
-        transform: none;
+        margin-right: 1.5rem;
     }
 }
 
