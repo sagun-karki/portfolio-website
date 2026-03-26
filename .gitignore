@@ -1,1 +1,1 @@
-Nothing needs to be added to .gitignore since the changes only include source files (.html, .py) which should not be ignored.
+Nothing needs to be added to the .gitignore file since the modified files are all source files (HTML, CSS, JS) and there are no build artifacts, dependencies, or temporary files in the changes.

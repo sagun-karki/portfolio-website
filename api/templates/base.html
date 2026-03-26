@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>{% block title %}Sagun Karki{% endblock %}</title>
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon.ico') }}">
   
@@ -14,26 +14,67 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   
+  <!-- Critical inline CSS for instant theme rendering and layout -->
+  <style>
+    /* Critical CSS - Theme variables */
+    :root{--color-bg:#F5F5F5;--color-surface:#FFFFFF;--color-text:#1A1A19;--color-text-muted:#555555;--color-nav-bg:rgba(255,255,255,0.94);--color-border:#E0E0E0;--header-height:65px;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif}
+    .dark-theme{--color-bg:#1A1A19;--color-surface:#242423;--color-text:#E0E0E0;--color-text-muted:#A0A0A0;--color-nav-bg:rgba(36,36,35,0.94);--color-border:#333332}
+    
+    /* Prevent FOUC - Apply theme immediately */
+    html{background-color:var(--color-bg);color:var(--color-text)}
+    body{margin:0;font-family:var(--font-sans);background-color:var(--color-bg);color:var(--color-text);min-height:100vh;display:flex;flex-direction:column;transition:background-color .3s ease,color .3s ease;-webkit-font-smoothing:antialiased}
+    
+    /* Critical header styles */
+    .main-header{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);z-index:1000;min-width:500px;transition:all .3s cubic-bezier(.16,1,.3,1)}
+    .main-nav{background:transparent;border-radius:999px;padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:center;gap:1rem}
+    .nav-brand{font-weight:700;font-size:.95rem;text-decoration:none;color:var(--color-text);opacity:0;max-width:0;overflow:hidden;white-space:nowrap;transition:all .4s ease}
+    .main-header.scrolled .nav-brand{opacity:1;max-width:200px;margin-right:1.5rem}
+    .nav-links{display:flex;gap:.5rem;position:relative}
+    .nav-links a{text-decoration:none;color:var(--color-text-muted);font-weight:500;font-size:.8rem;padding:.5rem 1.15rem;border-radius:999px;transition:color .2s ease}
+    .nav-actions{display:flex;align-items:center;gap:0}
+    .theme-toggle,.hamburger-button{background:none;border:none;cursor:pointer;padding:.5rem;display:flex;align-items:center;justify-content:center;color:var(--color-text)}
+    .hamburger-button{display:none}
+    
+    /* Mobile responsive */
+    @media(max-width:1024px){.main-header{min-width:calc(100% - 3rem)}}
+    @media(max-width:767px){.main-header{top:1rem;min-width:calc(100% - 2.5rem)}.main-nav{padding:.35rem .75rem;justify-content:space-between}.nav-links{display:none;position:absolute;top:calc(100% + .75rem);left:0;width:100%;background:var(--color-nav-bg);backdrop-filter:blur(80px);border:1px solid var(--color-border);flex-direction:column;padding:1.5rem;border-radius:28px;box-shadow:0 16px 48px rgba(0,0,0,.5)}.nav-links.is-open{display:flex;animation:pillFadeInDown .3s ease}@keyframes pillFadeInDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}.nav-links a{padding:.85rem 0;width:100%;text-align:left;font-size:1rem;border-bottom:1px solid var(--color-border)}.nav-links a:last-child{border-bottom:none}.hamburger-button{display:inline-flex}}
+    
+    /* Hide until full CSS loads */
+    .main-header{will-change:transform}
+  </style>
+  
   <!-- Preload critical fonts -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"></noscript>
   
-  <!-- Defer non-critical scripts -->
-  <script type="module" src="https://unpkg.com/@material/web/all.js?module" defer></script>
+  <!-- Load Material Web Components early for theme toggle -->
+  <script type="module" src="https://unpkg.com/@material/web/all.js?module"></script>
+  
+  <!-- Defer non-critical animation library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
+  
+  <!-- Main stylesheet - deferred but render-blocking minimized by critical CSS above -->
+  <link rel="preload" as="style" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"></noscript>
+  
+  <!-- Inline theme detection - runs immediately to prevent FOUC -->
   <script>
     (function() {
-      const theme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (theme === 'dark' || (!theme && prefersDark)) {
-        document.documentElement.classList.add('dark-theme');
-      }
+      try {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark-theme');
+        }
+      } catch(e) {}
     })();
   </script>
 
+  <!-- Google Analytics - async -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQGJ05YPPF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

@@ -1,3 +1,14 @@
+// Optimized: Run theme detection immediately before DOMContentLoaded
+(function() {
+    try {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+    } catch(e) {}
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- ELEMENT SELECTORS ---
@@ -5,31 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksContainer = document.querySelector('.nav-links');
     const header = document.querySelector('.main-header');
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('md-icon');
+    const themeIcon = themeToggle?.querySelector('md-icon');
     const docElement = document.documentElement;
 
-    // --- RESPONSIVE NAVIGATION ---
-    hamburgerButton.addEventListener('click', () => {
-        navLinksContainer.classList.toggle('is-open');
-    });
-
-    // --- THEME LOGIC ---
+    // --- THEME LOGIC (Optimized - runs immediately) ---
     function updateThemeIcon() {
+        if (!themeIcon) return;
         themeIcon.textContent = docElement.classList.contains('dark-theme') ? 'light_mode' : 'dark_mode';
     }
 
-    themeToggle.addEventListener('click', () => {
-        const isCurrentlyDark = docElement.classList.toggle('dark-theme');
-        localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
-        updateThemeIcon();
-    });
+    // Initialize theme icon on load
+    updateThemeIcon();
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isCurrentlyDark = docElement.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
+            updateThemeIcon();
+        }, { passive: true });
+    }
+
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    darkModeMediaQuery.addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
             docElement.classList.toggle('dark-theme', e.matches);
             updateThemeIcon();
         }
     });
+
+    // --- RESPONSIVE NAVIGATION ---
+    if (hamburgerButton && navLinksContainer) {
+        hamburgerButton.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('is-open');
+        }, { passive: true });
+    }
 
     // --- SCROLL-TRIGGERED ANIMATIONS ---
     const animatedElements = document.querySelectorAll('.card, .timeline-item');
@@ -105,10 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- INITIAL PAGE LOAD ---
-    updateThemeIcon();
     const homeLink = document.querySelector('.nav-links a[href="#home"]');
-    if (homeLink) {
-        setTimeout(() => activateNavLink(homeLink), 150);
+    if (homeLink && navIndicator) {
+        requestAnimationFrame(() => activateNavLink(homeLink));
     }
 });
 
