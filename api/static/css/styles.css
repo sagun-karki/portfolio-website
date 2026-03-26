@@ -277,7 +277,7 @@ main {
 }
 
 /* Global Link Underline Effect for Text Links */
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a) {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a) {
     color: inherit;
     text-decoration: none;
     position: relative;
@@ -285,7 +285,7 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a)
     transition: color 0.3s ease;
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a)::after {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a)::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -299,11 +299,11 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a)
     opacity: 0.6;
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a):hover {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):hover {
     color: var(--color-accent-primary);
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a):not(md-outlined-button a):not(.hero-links a):hover::after {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):hover::after {
     transform: scaleX(1);
     opacity: 1;
 }
@@ -326,18 +326,34 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a)
     margin-left: 1rem;
 }
 
+.icon-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.icon-button:hover {
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.icon-button .material-symbols-outlined {
+    font-size: 22px;
+    line-height: 1;
+}
+
 .theme-toggle {
     color: var(--color-text-secondary);
 }
 
-.theme-toggle md-icon,
-.hamburger-button md-icon {
-    color: var(--color-text-primary);
-    transition: color 0.2s ease;
-}
-
-.dark-theme .theme-toggle md-icon,
-.dark-theme .hamburger-button md-icon {
+.dark-theme .icon-button {
     color: var(--color-text);
 }
 
@@ -456,34 +472,42 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(md-filled-button a)
     height: 22px;
 }
 
-md-filled-button {
-    --md-filled-button-container-color: var(--color-primary);
-    --md-filled-button-label-text-color: #FFFFFF;
-    --md-filled-button-hover-container-color: var(--color-primary);
-}
-
-md-outlined-button {
-    --md-outlined-button-label-text-color: var(--color-secondary);
-    --md-outlined-button-outline-color: var(--color-secondary);
-    --md-outlined-button-hover-outline-color: var(--color-secondary);
-}
-
-.hero-links md-filled-button,
-.hero-links md-outlined-button {
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.62rem 1.2rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
     font-family: var(--font-sans);
-    --md-typescale-label-large-font-family: var(--font-sans);
-    text-transform: none;
-    --md-filled-button-label-text-weight: 600;
-    --md-outlined-button-label-text-weight: 600;
-    --md-filled-button-label-text-size: 0.875rem;
-    --md-outlined-button-label-text-size: 0.875rem;
-    --md-sys-shape-corner-full: var(--radius-pill);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.hero-links md-outlined-button:hover {
-    background-color: rgba(107, 122, 143, 0.05);
+.hero-btn:hover {
+    transform: translateY(-1px);
+}
+
+.hero-btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.hero-btn-primary:hover {
+    background: color-mix(in srgb, var(--color-primary) 90%, #000 10%);
+}
+
+.hero-btn-secondary {
+    color: var(--color-secondary);
+    border-color: color-mix(in srgb, var(--color-secondary) 55%, transparent);
+    background: transparent;
+}
+
+.hero-btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--color-secondary) 10%, transparent);
 }
 
 /* ==========================================================================

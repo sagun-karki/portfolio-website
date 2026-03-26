@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   
   <!-- Defer non-critical scripts -->
-  <script type="module" src="https://unpkg.com/@material/web/all.js?module" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
@@ -68,12 +67,12 @@
         <a href="#publications">Publications</a>
       </div>
       <div class="nav-actions">
-        <md-icon-button id="theme-toggle" class="theme-toggle">
-          <md-icon>dark_mode</md-icon>
-        </md-icon-button>
-        <md-icon-button class="hamburger-button">
-          <md-icon>menu</md-icon>
-        </md-icon-button>
+        <button id="theme-toggle" class="icon-button theme-toggle" aria-label="Toggle theme" type="button">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+        <button class="icon-button hamburger-button" aria-label="Open menu" type="button">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
       </div>
     </nav>
   </header>
