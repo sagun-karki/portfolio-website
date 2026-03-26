@@ -34,12 +34,17 @@
 
 .dark-theme {
     /* Cinder & Slate (Default/Primary Vibe) */
-    --color-bg: #1A1A19;       /* Deep Slate */
-    --color-surface: #242423;  /* Cinder Gray */
-    --color-text: #E0E0E0;     /* Off-White */
+    --color-bg: #1A1A19;
+    /* Deep Slate */
+    --color-surface: #242423;
+    /* Cinder Gray */
+    --color-text: #E0E0E0;
+    /* Off-White */
     --color-text-muted: #A0A0A0;
-    --color-primary: #E67E22;  /* Burnt Orange */
-    --color-secondary: #3498DB; /* Sky Blue */
+    --color-primary: #E67E22;
+    /* Burnt Orange */
+    --color-secondary: #3498DB;
+    /* Sky Blue */
     --color-border: #333332;
     --color-nav-bg: rgba(36, 36, 35, 0.94);
 
@@ -88,7 +93,12 @@ body {
 /* ==========================================================================
    3. TYPOGRAPHY
    ========================================================================== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-sans);
     font-weight: 600;
     line-height: 1.2;
@@ -103,10 +113,12 @@ main {
 
 .main-header {
     position: fixed;
-    top: 1.5rem; /* The "Detached" gap */
+    top: 1.5rem;
+    /* The "Detached" gap */
     left: 50%;
     transform: translateX(-50%);
-    width: auto; /* Shrink to content */
+    width: auto;
+    /* Shrink to content */
     min-width: 500px;
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -129,28 +141,21 @@ main {
 }
 
 .main-header.scrolled .main-nav {
-    background: var(--color-nav-bg);
+    /* background: var(--color-nav-bg); */
+    backdrop-filter: blur(15px);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.05'/%3E%3C/svg%3E");
-    border: 1px solid var(--color-border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+    border: 0.5px solid var(--color-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
-.main-header.scrolled .main-nav::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(64px);
-    -webkit-backdrop-filter: blur(64px);
-    border-radius: var(--radius-pill);
-    pointer-events: none;
-    z-index: -1;
-}
+/* Removed ::after to avoid double-stacking or blurring children */
 
+/* Dark theme overrides for scrolled nav - keeping same vibrant gradient for both */
 .dark-theme.main-header.scrolled .main-nav,
 .dark-theme .main-header.scrolled .main-nav {
-    background: var(--color-nav-bg);
+    backdrop-filter: blur(15px);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.03'/%3E%3C/svg%3E");
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px rgba(32, 32, 32, 0.4);
 }
 
 .page-content {
@@ -248,7 +253,7 @@ main {
     color: #FFFFFF !important;
 }
 
-/* The sliding pill indicator */
+/* The sliding pill indicator - solid orange pill */
 .nav-indicator {
     position: absolute;
     top: 4px;
@@ -259,10 +264,17 @@ main {
     transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0;
     z-index: -1;
-    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+    box-shadow: none;
+    /* Removed shadow to ensure no "blur" effect around the slider */
 }
 
-.nav-links a.active ~ .nav-indicator,
+.main-header.scrolled .nav-indicator {
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Very crisp shadow */
+}
+
+.nav-links a.active~.nav-indicator,
 .nav-links:has(a.active) .nav-indicator {
     opacity: 1;
 }
@@ -825,11 +837,12 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):hove
     .main-header {
         min-width: calc(100% - 3rem);
     }
+
     .nav-brand {
         margin-right: 0;
         flex-grow: 1;
     }
-    
+
     .main-header.scrolled .nav-brand {
         opacity: 1;
         max-width: 200px;
@@ -893,8 +906,15 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):hove
     }
 
     @keyframes pillFadeInDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .nav-links a {
