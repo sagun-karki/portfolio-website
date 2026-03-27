@@ -1,32 +1,48 @@
 import os
 import json
-from functools import lru_cache
-from flask import Flask, render_template, send_from_directory, make_response
+from flask import Flask, render_template, send_from_directory
 from flask_caching import Cache
 
 app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'
-app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # 5 minutes cache
+app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
 cache = Cache(app)
 
-# Security headers middleware
 @app.after_request
 def add_security_headers(response):
-    """Add security headers to all responses."""
+    """
+    Injects security headers. 
+    Modified to allow Vercel Live (preview tools) to frame the application.
+    """
+    # Define allowed Vercel origins
+    vercel_origins = "https://vercel.live https://*.vercel.app"
+    
+    # CSP: default-src 'self' is the baseline. 
+    # frame-src and connect-src are required for the Vercel toolbar.
+    # script-src includes 'unsafe-inline' as Vercel Live often injects a loader script.
+    csp = (
+        "default-src 'self'; "
+        f"frame-src 'self' {vercel_origins}; "
+        f"connect-src 'self' {vercel_origins}; "
+        "script-src 'self' 'unsafe-inline' https://vercel.live; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
+    )
+
+    response.headers['Content-Security-Policy'] = csp
     response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    
+    # Relaxing X-Frame-Options to allow Vercel to embed the site for feedback tools
+    # Note: Modern browsers prioritize CSP 'frame-ancestors', but this handles legacy.
+    response.headers['X-Frame-Options'] = 'ALLOW-FROM https://vercel.live'
+    
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     return response
 
-
 @cache.cached(key_prefix='site_data')
 def load_site_data():
-    """
-    Load and cache site data from JSON file.
-    Uses LRU cache as fallback for additional performance.
-    """
+    """Load and cache site data from JSON file."""
     data_path = os.path.join(app.root_path, 'static', 'json', 'data.json')
     try:
         with open(data_path, 'r') as f:
@@ -34,12 +50,9 @@ def load_site_data():
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
-
 @app.route('/')
 def index():
-    """
-    Renders the home page (index.html) with dynamic content from JSON.
-    """
+    """Renders the home page with dynamic content."""
     try:
         site_data = load_site_data()
         return render_template('index.html', site_data=site_data)
@@ -47,31 +60,23 @@ def index():
         app.logger.error(f'Error loading site data: {e}')
         return render_template('index.html', site_data={}), 500
 
-
 @app.route('/static/<path:filename>')
 def static_files(filename):
-    """
-    Serve static files with cache headers for better performance.
-    """
+    """Serve static files with aggressive caching."""
     try:
         response = send_from_directory('static', filename)
         response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
-        response.headers['X-Content-Type-Options'] = 'nosniff'
         return response
     except Exception as e:
         app.logger.error(f'Error serving static file {filename}: {e}')
         raise
 
-
 @app.errorhandler(404)
 def page_not_found(e):
-    """
-    Renders a custom 404 error page.
-    """
+    """Custom 404 error page."""
     return render_template('404.html'), 404
 
-
 if __name__ == '__main__':
-    # Disable debug mode in production
+    # Determine debug mode from environment variable
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes')
     app.run(debug=debug_mode)
