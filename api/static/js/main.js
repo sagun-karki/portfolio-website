@@ -9,20 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const docElement = document.documentElement;
 
     // --- RESPONSIVE NAVIGATION ---
-    hamburgerButton.addEventListener('click', () => {
-        navLinksContainer.classList.toggle('is-open');
-    });
+    if (hamburgerButton && navLinksContainer) {
+        hamburgerButton.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('is-open');
+        });
+    }
 
     // --- THEME LOGIC ---
     function updateThemeIcon() {
+        if (!themeIcon) return;
         themeIcon.textContent = docElement.classList.contains('dark-theme') ? 'light_mode' : 'dark_mode';
     }
 
-    themeToggle.addEventListener('click', () => {
-        const isCurrentlyDark = docElement.classList.toggle('dark-theme');
-        localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
-        updateThemeIcon();
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isCurrentlyDark = docElement.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
+            updateThemeIcon();
+        });
+    }
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
@@ -60,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.add('active');
     };
 
+    // Guard against missing navigation elements
+    if (!sections.length || !navLinks.length) {
+        console.warn('Navigation elements not found');
+    }
+
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -71,8 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { rootMargin: "-50% 0px -50% 0px" });
     sections.forEach(section => navObserver.observe(section));
 
-    // --- MAIN SCROLL LISTENER ---
-    window.addEventListener('scroll', () => {
+    // --- THROTTLE FUNCTION FOR PERFORMANCE ---
+    function throttle(func, delay) {
+        let lastCall = 0;
+        return function(...args) {
+            const now = Date.now();
+            if (now - lastCall >= delay) {
+                lastCall = now;
+                func.apply(this, args);
+            }
+        };
+    }
+
+    // --- MAIN SCROLL LISTENER (THROTTLED) ---
+    const handleScroll = () => {
         const scrollY = window.scrollY;
 
         // Floating pill transition
@@ -92,17 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fix for active nav link on last section when scrolled to bottom
         const scrollBuffer = 5;
         if ((window.innerHeight + scrollY) >= document.body.offsetHeight - scrollBuffer) {
-            const lastSectionId = sections[sections.length - 1].id;
-            const lastLink = document.querySelector(`.nav-links a[href="#${lastSectionId}"]`);
-            activateNavLink(lastLink);
+            const lastSectionId = sections[sections.length - 1]?.id;
+            if (lastSectionId) {
+                const lastLink = document.querySelector(`.nav-links a[href="#${lastSectionId}"]`);
+                activateNavLink(lastLink);
+            }
         }
-    }, { passive: true });
+    };
 
-    // Recalculate pill position on resize
-    window.addEventListener('resize', () => {
+    window.addEventListener('scroll', throttle(handleScroll, 16), { passive: true });
+
+    // Recalculate pill position on resize (throttled)
+    window.addEventListener('resize', throttle(() => {
         const activeLink = document.querySelector('.nav-links a.active');
         if (activeLink) activateNavLink(activeLink);
-    });
+    }, 100));
 
     // --- INITIAL PAGE LOAD ---
     updateThemeIcon();
