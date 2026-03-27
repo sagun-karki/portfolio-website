@@ -14,5 +14,5 @@
 
 ## Critical Warnings for Agents
 - DO NOT modify vercel.json without explicit permission; it handles the routing for the entire portfolio.
-- DO NOT modify .gitignore without explicit permission; it handles the routing for the entire portfolio. But you can always add new rules to .gitignore if needed.
+- DO NOT modify .gitignore without explicit permission; But you can always add new rules to .gitignore if needed. Never remove any existing rules from .gitignore.
 - When refactoring, prioritize memory efficiency. When generating HTML, ensure accessibility (ARIA labels) and responsive design.

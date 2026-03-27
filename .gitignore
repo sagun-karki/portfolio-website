@@ -1,4 +1,6 @@
-```
+# AGENT RULE: ONLY APPEND TO THIS FILE. 
+# REMOVAL OF ANY EXISTING RULES IS STRICTLY PROHIBITED.
+
 # Compiled and build artifacts
 *.pyc
 __pycache__/
@@ -46,4 +48,4 @@ htmlcov/
 api/static/js/main.js
 api/static/css/*.min.css
 api/static/js/*.min.js
-```
+.DS_Store
