@@ -12,29 +12,29 @@ cache = Cache(app)
 @app.after_request
 def add_security_headers(response):
     """
-    Injects security headers. 
-    Modified to allow Vercel Live (preview tools) to frame the application.
+    A less restrictive CSP that allows most common CDN and external resources
+    while maintaining basic security headers.
     """
-    # Define allowed Vercel origins
-    vercel_origins = "https://vercel.live https://*.vercel.app"
-    
-    # CSP: default-src 'self' is the baseline. 
-    # frame-src and connect-src are required for the Vercel toolbar.
-    # script-src includes 'unsafe-inline' as Vercel Live often injects a loader script.
+    # This policy allows:
+    # 1. Scripts/Images/Styles from ANY encrypted (https) source.
+    # 2. Inline scripts and styles (required for many libraries).
+    # 3. Data URIs (for those SVG noise/grain filters).
     csp = (
-        "default-src 'self'; "
-        f"frame-src 'self' {vercel_origins}; "
-        f"connect-src 'self' {vercel_origins}; "
-        "script-src 'self' 'unsafe-inline' https://vercel.live; "
-        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
+        "default-src 'self' https:; "
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; "
+        "style-src 'self' 'unsafe-inline' https:; "
+        "img-src 'self' data: https:; "
+        "font-src 'self' data: https:; "
+        "connect-src 'self' https:; "
+        "frame-src 'self' https://vercel.live https://*.vercel.app https:;"
     )
 
     response.headers['Content-Security-Policy'] = csp
     response.headers['X-Content-Type-Options'] = 'nosniff'
     
-    # Relaxing X-Frame-Options to allow Vercel to embed the site for feedback tools
-    # Note: Modern browsers prioritize CSP 'frame-ancestors', but this handles legacy.
-    response.headers['X-Frame-Options'] = 'ALLOW-FROM https://vercel.live'
+    # Allows Vercel and others to frame the site. 
+    # Use '*' to be least restrictive, or just remove the header.
+    response.headers['X-Frame-Options'] = 'ALLOWALL' 
     
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
@@ -42,7 +42,6 @@ def add_security_headers(response):
 
 @cache.cached(key_prefix='site_data')
 def load_site_data():
-    """Load and cache site data from JSON file."""
     data_path = os.path.join(app.root_path, 'static', 'json', 'data.json')
     try:
         with open(data_path, 'r') as f:
@@ -52,31 +51,19 @@ def load_site_data():
 
 @app.route('/')
 def index():
-    """Renders the home page with dynamic content."""
     try:
         site_data = load_site_data()
         return render_template('index.html', site_data=site_data)
     except Exception as e:
-        app.logger.error(f'Error loading site data: {e}')
+        app.logger.error(f'Error: {e}')
         return render_template('index.html', site_data={}), 500
 
 @app.route('/static/<path:filename>')
 def static_files(filename):
-    """Serve static files with aggressive caching."""
-    try:
-        response = send_from_directory('static', filename)
-        response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
-        return response
-    except Exception as e:
-        app.logger.error(f'Error serving static file {filename}: {e}')
-        raise
-
-@app.errorhandler(404)
-def page_not_found(e):
-    """Custom 404 error page."""
-    return render_template('404.html'), 404
+    response = send_from_directory('static', filename)
+    response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
+    return response
 
 if __name__ == '__main__':
-    # Determine debug mode from environment variable
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes')
     app.run(debug=debug_mode)
