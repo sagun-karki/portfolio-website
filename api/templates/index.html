@@ -6,10 +6,13 @@
     <h1 class="hero-title">{{ site_data.profile.name }}</h1>
     <p class="hero-subtitle">{{ site_data.profile.title }}</p>
     <div class="hero-edu">
-      {% set edu_parts = site_data.profile.education.split('|') %}
-      <div class="hero-edu-degree">{{ edu_parts[0] | trim }}</div>
-      {% if edu_parts | length > 1 %}
-      <div class="hero-edu-univ">{{ edu_parts[1:] | join(' · ') | trim }}</div>
+      {% set education = site_data.profile.education | default('', true) %}
+      {% if education %}
+        {% set edu_parts = education.split('|') %}
+        <div class="hero-edu-degree">{{ (edu_parts[0] | default('', true)) | trim }}</div>
+        {% if edu_parts | length > 1 %}
+        <div class="hero-edu-univ">{{ (edu_parts[1:] | default([], true) | join(' · ')) | trim }}</div>
+        {% endif %}
       {% endif %}
     </div>
     <div class="hero-links">
