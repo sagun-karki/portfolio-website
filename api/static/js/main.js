@@ -12,6 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburgerButton && navLinksContainer) {
         hamburgerButton.addEventListener('click', () => {
             navLinksContainer.classList.toggle('is-open');
+            const isOpen = navLinksContainer.classList.contains('is-open');
+            hamburgerButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            hamburgerButton.querySelector('.material-symbols-outlined').textContent = isOpen ? 'close' : 'menu';
+        });
+        
+        // Close mobile menu when clicking on nav links
+        navLinksContainer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('is-open');
+                hamburgerButton.setAttribute('aria-label', 'Open menu');
+                hamburgerButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+            });
         });
     }
 

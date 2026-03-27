@@ -13,6 +13,17 @@
 - Data: The api/static/json/data.json is the single source of truth for portfolio content (projects, experience).
 
 ## Critical Warnings for Agents
-- DO NOT modify vercel.json without explicit permission; it handles the routing for the entire portfolio.
-- DO NOT modify .gitignore without explicit permission; it handles the routing for the entire portfolio. But you can always add new rules to .gitignore if needed.
-- When refactoring, prioritize memory efficiency. When generating HTML, ensure accessibility (ARIA labels) and responsive design.
+- DO NOT modify vercel.json without explicit permission; it handles the routing for the entire serverless deployment.
+- DO NOT modify .gitignore patterns without explicit permission; however, you can add new rules if needed for generated files or new dependencies.
+- When refactoring, prioritize memory efficiency since Vercel serverless functions have execution time and memory limits.
+- When generating HTML, ensure accessibility (ARIA labels) and responsive design for all screen sizes.
+
+## Code Quality Guidelines
+- Follow PEP 8 style guidelines for Python code.
+- Use semantic HTML5 elements throughout templates.
+- Ensure all API endpoints return proper HTTP status codes.
+- Test routes locally before deploying to Vercel.
+- Implement security headers (CSP, X-Frame-Options, etc.) in the Flask app.
+- Add Open Graph and Twitter Card meta tags for social sharing.
+- Include skip-to-content links and respect prefers-reduced-motion for accessibility.
+- Close mobile navigation menus when users click on nav links.
