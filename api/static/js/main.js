@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburgerButton && navLinksContainer) {
         hamburgerButton.addEventListener('click', () => {
             navLinksContainer.classList.toggle('is-open');
+            // GA4: Track mobile menu engagement
+            if (typeof gtag === 'function') {
+                gtag('event', 'mobile_menu_toggle', {
+                    menu_state: navLinksContainer.classList.contains('is-open') ? 'open' : 'closed'
+                });
+            }
         });
     }
 
@@ -26,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCurrentlyDark = docElement.classList.toggle('dark-theme');
             localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
             updateThemeIcon();
+            // GA4: Track theme change
+            if (typeof gtag === 'function') {
+                gtag('event', 'theme_change', {
+                    theme_selected: isCurrentlyDark ? 'dark' : 'light'
+                });
+            }
         });
     }
 
@@ -70,12 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Navigation elements not found');
     }
 
+    // Track section views using IntersectionObserver
+    const trackedSections = new Set();
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
                 activateNavLink(activeLink);
+                
+                // GA4: Track section view (only once per section)
+                if (typeof gtag === 'function' && !trackedSections.has(id)) {
+                    trackedSections.add(id);
+                    gtag('event', 'section_view', {
+                        section_id: id
+                    });
+                }
             }
         });
     }, { rootMargin: "-50% 0px -50% 0px" });

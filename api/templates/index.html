@@ -21,7 +21,8 @@
     </div>
     <div class="hero-socials">
       {% for social in site_data.profile.socials %}
-      <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}">
+      <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}" 
+         onclick="if(typeof gtag==='function'){gtag('event','social_engagement',{platform:'{{ social.platform }}',location:'hero'});}">
         <svg>
           <use href="{{ social.icon }}"></use>
         </svg>
@@ -124,7 +125,10 @@
       <div class="card">
         <h3 class="card-item-title">
           {% if project.url %}
-          <a href="{{ project.url }}" target="_blank">{{ project.title }} ↗</a>
+          <a href="{{ project.url }}" target="_blank" 
+             onclick="if(typeof gtag==='function'){gtag('event','select_content',{content_type:'project',item_id:'{{ project.title | replace("'", "\\'") }}',url:'{{ project.url }}'});}">
+            {{ project.title }} ↗
+          </a>
           {% else %}
           {{ project.title }}
           {% endif %}
@@ -160,7 +164,10 @@
       <div class="card">
         <h3 class="card-item-title">
           {% if pub.url %}
-          <a href="{{ pub.url }}" target="_blank">{{ pub.title }} ↗</a>
+          <a href="{{ pub.url }}" target="_blank" 
+             onclick="if(typeof gtag==='function'){gtag('event','select_content',{content_type:'publication',item_id:'{{ pub.title | replace("'", "\\'") }}',url:'{{ pub.url }}'});}">
+            {{ pub.title }} ↗
+          </a>
           {% else %}
           {{ pub.title }}
           {% endif %}
