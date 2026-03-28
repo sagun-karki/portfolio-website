@@ -64,6 +64,15 @@ def static_files(filename):
     response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
     return response
 
+@app.errorhandler(404)
+def page_not_found(e):
+    try:
+        site_data = load_site_data()
+        return render_template('404.html', site_data=site_data), 404
+    except Exception as ex:
+        app.logger.error(f'404 Error: {ex}')
+        return render_template('404.html', site_data={}), 404
+
 if __name__ == '__main__':
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes')
     app.run(debug=debug_mode)
