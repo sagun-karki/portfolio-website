@@ -1,4 +1,4 @@
-```gitignore
+
 # Compiled Python files
 *.pyc
 __pycache__/
@@ -37,4 +37,3 @@ htmlcov/
 .pytest_cache/
 .gradle/
 node_modules/
-```
