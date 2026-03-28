@@ -257,14 +257,6 @@
     </div>
 
     <script>
-        // GA4: Track 404 error
-        if(typeof gtag === 'function') {
-            gtag('event', 'page_error', {
-                type: '404',
-                url: window.location.pathname
-            });
-        }
-        
         // Create floating data points
         function createDataPoints() {
             const container = document.querySelector('.container');
