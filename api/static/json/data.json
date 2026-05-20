@@ -49,6 +49,12 @@
   ],
   "projects": [
     {
+      "title": "Multimodal Resume Compiler",
+      "technologies": "Python, Flask, XeLaTeX, Gemini API, Multi-Agent Systems",
+      "description": "Built an autonomous, auto-correcting multi-agent orchestration system that iteratively tailors and compiles ATS-friendly LaTeX resumes against targeted job descriptions.",
+      "url": "https://github.com/sagun-karki/multimodal-resume-compiler"
+    },
+    {
       "title": "AI-Powered FAQ System",
       "technologies": "Python, Flask, FAISS, RAG",
       "description": "Led a team to build an AI assistant using a RAG pipeline with FAISS vector search for accurate, citation-backed answers.",
@@ -81,11 +87,13 @@
         "XGBoost",
         "Hugging Face",
         "FAISS",
+        "Multi-Agent Systems",
         "Pandas",
         "NumPy",
         "Power BI"
       ],
       "Tools & Platforms": [
+        "Flask",
         "Git",
         "GitHub Actions",
         "Docker",
@@ -104,6 +112,10 @@
       {
         "name": "JavaScript",
         "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+      },
+      {
+        "name": "Flask",
+        "url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
       },
       {
         "name": "Bash",
