@@ -50,6 +50,7 @@ def load_site_data():
         return {}
 
 @app.route('/')
+@cache.cached(timeout=300)
 def index():
     try:
         site_data = load_site_data()
