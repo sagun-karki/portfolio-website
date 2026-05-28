@@ -1,0 +1,85 @@
+/* ==========================================================================
+   4. LAYOUT COMPONENTS (HEADER, MAIN, FOOTER)
+   ========================================================================== */
+main {
+    flex-grow: 1;
+}
+
+.main-header {
+    position: fixed;
+    top: 1.5rem;
+    /* The "Detached" gap */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    /* Shrink to content */
+    min-width: 500px;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Removed .main-header.scrolled as it's handled via JS-driven scale/position */
+
+.main-nav {
+    background: transparent;
+    position: relative;
+    z-index: 1;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-header.scrolled .main-nav {
+    /* background: var(--color-nav-bg); */
+    backdrop-filter: blur(15px);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.05'/%3E%3C/svg%3E");
+    border: 0.5px solid var(--color-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Removed ::after to avoid double-stacking or blurring children */
+
+/* Dark theme overrides for scrolled nav - keeping same vibrant gradient for both */
+.dark-theme.main-header.scrolled .main-nav,
+.dark-theme .main-header.scrolled .main-nav {
+    backdrop-filter: blur(15px);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.03'/%3E%3C/svg%3E");
+    box-shadow: 0 8px 32px rgba(32, 32, 32, 0.4);
+}
+
+.page-content {
+    max-width: var(--container-width-narrow);
+    width: 100%;
+    margin: 0 auto;
+    padding: 5rem var(--container-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.main-footer {
+    flex-shrink: 0;
+    background-color: transparent;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-tertiary);
+    padding: 2.5rem 0;
+}
+
+.footer-content {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 0.85rem;
+}
