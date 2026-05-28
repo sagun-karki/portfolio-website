@@ -38,34 +38,30 @@ main {
 
 /* Glassmorphism — only active after scroll detach */
 .main-header.scrolled .main-nav {
-    backdrop-filter: blur(40px) saturate(200%) brightness(0.9);
-    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(0.9);
-    background-color: rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px) saturate(220%) brightness(0.95);
+    -webkit-backdrop-filter: blur(16px) saturate(220%) brightness(0.95);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
+    border: none;
     box-shadow:
-        /* Outer glow */
-        0 8px 40px rgba(0, 0, 0, 0.6),
-        /* Top highlight — core of the glass illusion */
-        inset 0 1px 0 rgba(255, 255, 255, 0.18),
-        /* Bottom subtle shadow line */
-        inset 0 -1px 0 rgba(255, 255, 255, 0.04),
-        /* Left edge micro-highlight */
-        inset 1px 0 0 rgba(255, 255, 255, 0.06),
+        /* Crisp glass drop shadow */
+        0 16px 40px -12px rgba(0, 0, 0, 0.85),
+        /* Refractive bottom shadow edge */
+        inset 0 -1.5px 0 rgba(0, 0, 0, 0.5),
         /* Accent glow bleed */
-        0 0 0 0.5px rgba(0, 255, 0, 0.06);
+        0 0 0 0.5px rgba(0, 255, 0, 0.1);
 }
 
 /* Light mode glass */
 .light-theme .main-header.scrolled .main-nav {
-    backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(16px) saturate(200%) brightness(1.05);
+    -webkit-backdrop-filter: blur(16px) saturate(200%) brightness(1.05);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: none;
     box-shadow:
-        0 4px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.04),
-        inset 1px 0 0 rgba(255, 255, 255, 0.6);
+        /* Outer soft drop shadow */
+        0 12px 32px -10px rgba(0, 0, 0, 0.15),
+        /* Refractive bottom shadow edge */
+        inset 0 -1.5px 0 rgba(0, 0, 0, 0.08);
 }
 
 .page-content {

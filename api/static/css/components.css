@@ -71,7 +71,7 @@
 }
 
 .light-theme .card-logo {
-    filter: grayscale(100%) brightness(0);
+    filter: grayscale(100%);
     opacity: 0.6;
 }
 

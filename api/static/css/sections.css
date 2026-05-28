@@ -435,7 +435,7 @@
 }
 
 .light-theme .timeline-content.card .card-logo {
-    filter: grayscale(100%) brightness(0);
+    filter: grayscale(100%);
     opacity: 0.6;
 }
 
