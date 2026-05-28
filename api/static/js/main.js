@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
-                const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+                const activeLink = document.querySelector(`.nav-links a[href="#${id}"], .nav-links a[href="/#${id}"]`);
                 activateNavLink(activeLink);
                 
                 // GA4: Track section view (only once per section)
@@ -155,9 +155,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIAL PAGE LOAD ---
     updateThemeIcon();
-    const homeLink = document.querySelector('.nav-links a[href="#home"]');
-    if (homeLink) {
-        setTimeout(() => activateNavLink(homeLink), 150);
+    const path = window.location.pathname;
+    if (path === '/contact') {
+        const contactLink = document.querySelector('.nav-links a[href="/contact"]');
+        if (contactLink) {
+            setTimeout(() => activateNavLink(contactLink), 150);
+        }
+    } else if (path === '/privacy') {
+        // Clear active classes and hide navigation pill on privacy page
+        navLinks.forEach(l => l.classList.remove('active'));
+        if (navIndicator) {
+            navIndicator.style.width = '0px';
+        }
+    } else {
+        const homeLink = document.querySelector('.nav-links a[href="#home"], .nav-links a[href="/#home"]');
+        if (homeLink) {
+            setTimeout(() => activateNavLink(homeLink), 150);
+        }
     }
 
     // --- GA4: Delegated tracking for project & publication links ---

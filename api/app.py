@@ -59,6 +59,26 @@ def index():
         app.logger.error(f'Error: {e}')
         return render_template('index.html', site_data={}), 500
 
+@app.route('/privacy')
+@cache.cached(timeout=300)
+def privacy():
+    try:
+        site_data = load_site_data()
+        return render_template('privacy.html', site_data=site_data)
+    except Exception as e:
+        app.logger.error(f'Error: {e}')
+        return render_template('privacy.html', site_data={}), 500
+
+@app.route('/contact')
+@cache.cached(timeout=300)
+def contact():
+    try:
+        site_data = load_site_data()
+        return render_template('contact.html', site_data=site_data)
+    except Exception as e:
+        app.logger.error(f'Error: {e}')
+        return render_template('contact.html', site_data={}), 500
+
 @app.route('/static/<path:filename>')
 def static_files(filename):
     response = send_from_directory('static', filename)

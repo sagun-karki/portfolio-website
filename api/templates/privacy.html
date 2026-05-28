@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy | Sagun Karki{% endblock %}
+
+{% block content %}
+<section class="section-container" style="max-width: 800px; margin: 0 auto; padding: calc(var(--header-height) + 2rem) var(--container-padding) 6rem;">
+  <h2 class="section-title" data-index="00">Privacy Policy</h2>
+  
+  <div class="card" style="opacity: 1; transform: none; display: flex; flex-direction: column; gap: 2rem;">
+    <div>
+      <h3 class="card-item-title" style="font-size: 1.5rem; color: var(--accent);">Data Collection & Privacy Disclosure</h3>
+      <p class="card-item-subtitle">Effective Date: May 2026</p>
+    </div>
+
+    <div>
+      <h4 class="skill-title">1. Introduction</h4>
+      <p class="card-item-desc" style="margin-top: 0.5rem;">
+        This Privacy Policy outlines how your data is handled when you visit this personal portfolio website. Respect for visitor privacy is a fundamental standard of this project.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="skill-title">2. Google Analytics 4 (GA4)</h4>
+      <p class="card-item-desc" style="margin-top: 0.5rem;">
+        This website uses Google Analytics 4 (GA4) to collect anonymous telemetry on site interactions, page views, and event engagement (such as outbound clicks to projects or socials). This data helps monitor performance and traffic.
+      </p>
+      <p class="card-item-desc" style="margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent);">
+        * GA4 automatically processes anonymized IP addresses and device characteristics. No personally identifiable information (PII) is stored or requested.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="skill-title">3. Local Storage</h4>
+      <p class="card-item-desc" style="margin-top: 0.5rem;">
+        This site uses browser <code style="font-family: var(--font-mono); color: var(--accent);">localStorage</code> solely to remember your theme selection (Dark Mode or Light Mode) between sessions. This is stored locally on your device and is never sent to any server.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="skill-title">4. Third-Party Links</h4>
+      <p class="card-item-desc" style="margin-top: 0.5rem;">
+        This website links to external platforms such as LinkedIn, GitHub, and academic publishers. Once you navigate away, the privacy policies of those external domains will apply.
+      </p>
+    </div>
+
+    <div style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+      <a href="/" class="hero-btn hero-btn-primary">Return to Base</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

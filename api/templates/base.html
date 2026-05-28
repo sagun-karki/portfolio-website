@@ -68,11 +68,12 @@
       <a href="#" class="nav-brand">Sagun Karki</a>
       <div class="nav-links">
         <div class="nav-indicator"></div>
-        <a href="#home">Home</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#publications">Publications</a>
+        <a href="/#home">Home</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#publications">Publications</a>
+        <a href="/contact">Contact</a>
       </div>
       <div class="nav-actions">
         <button id="theme-toggle" class="icon-button theme-toggle" aria-label="Toggle theme" type="button">
@@ -91,7 +92,11 @@
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>&copy; 2025 {{ site_data.profile.name }}. All rights reserved.</p>
+      <p>
+        &copy; 2025 {{ site_data.profile.name }}. All rights reserved.
+        · <a href="/privacy" style="color: var(--text-tertiary); text-decoration: none; margin-left: 0.5rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-tertiary)'">Privacy Policy</a>
+        · <a href="/contact" style="color: var(--text-tertiary); text-decoration: none; margin-left: 0.5rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-tertiary)'">Contact</a>
+      </p>
       <div class="social-links">
         {% for social in site_data.profile.socials %}
         <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}"

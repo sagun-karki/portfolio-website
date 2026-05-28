@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Contact | Sagun Karki{% endblock %}
+
+{% block content %}
+<section class="section-container" style="max-width: 800px; margin: 0 auto; padding: calc(var(--header-height) + 2rem) var(--container-padding) 6rem;">
+  <h2 class="section-title" data-index="05">Contact Me</h2>
+  
+  <div class="card" style="opacity: 1; transform: none; display: flex; flex-direction: column; gap: 2rem;">
+    <div>
+      <h3 class="card-item-title" style="font-size: 1.5rem; color: var(--accent);">Get in Touch</h3>
+      <p class="card-item-subtitle">Establish Connection</p>
+      <p class="card-item-desc" style="margin-top: 1rem;">
+        Whether you want to discuss machine learning pipelines, distributed data systems, research opportunities, or just say hello, feel free to reach out.
+      </p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 1.5rem; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="material-symbols-outlined" style="color: var(--accent); font-size: 1.5rem;">mail</span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-tertiary); text-transform: uppercase;">Email Address</span>
+          <a href="mailto:sagunk064@gmail.com" class="card-item-title" style="margin: 0; text-decoration: none; color: var(--text-primary); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">
+            sagunk064@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="material-symbols-outlined" style="color: var(--accent); font-size: 1.5rem;">hub</span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-tertiary); text-transform: uppercase;">LinkedIn Network</span>
+          {% for social in site_data.profile.socials %}
+            {% if social.platform == "LinkedIn" %}
+            <a href="{{ social.url }}" target="_blank" class="card-item-title" style="margin: 0; text-decoration: none; color: var(--text-primary); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'"
+               onclick="if(typeof gtag==='function'){gtag('event','social_engagement',{platform:'LinkedIn',location:'contact_page'});}">
+              linkedin.com/in/sagunkarki ↗
+            </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <a href="/" class="hero-btn hero-btn-primary">Return to Base</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

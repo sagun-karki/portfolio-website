@@ -105,7 +105,7 @@
 }
 
 /* Global text link underline — accent colored */
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a) {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn) {
     color: inherit;
     text-decoration: none;
     position: relative;
@@ -113,7 +113,7 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a) {
     transition: color 0.2s ease;
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a)::after {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn)::after {
     content: '';
     position: absolute;
     width: 100%;
