@@ -100,18 +100,31 @@
   </section>
 
   <section id="experience">
-    <h2 class="section-title">Experience</h2>
+    <h2 class="section-title" data-index="01">Experience</h2>
     <div class="timeline">
       {% for job in site_data.experience %}
       <div class="timeline-item">
         <div class="timeline-content card">
-          <img src="{{ url_for('static', filename='images/' + job.logo) }}" alt="{{ job.company }}" class="card-logo" loading="lazy" decoding="async">
-          <div class="card-item-header">
-            <h3 class="card-item-title">{{ job.role }}</h3>
-            <p class="card-item-subtitle">{{ job.company }}</p>
+          <div class="timeline-entry-top">
+            <img src="{{ url_for('static', filename='images/' + job.logo) }}" alt="{{ job.company }}" class="card-logo" loading="lazy" decoding="async">
+            <div class="card-item-header">
+              <h3 class="card-item-title">{{ job.role }}</h3>
+              <p class="card-item-subtitle">{{ job.company }}</p>
+            </div>
+            <div class="timeline-entry-right">
+              <p class="card-item-meta timeline-duration">{{ job.duration }}</p>
+            </div>
           </div>
-          <p class="card-item-desc">{{ job.description }}</p>
-          <p class="card-item-meta">{{ job.duration }}</p>
+          {% if job.stack %}
+          <p class="timeline-stack">{{ job.stack }}</p>
+          {% endif %}
+          {% if job.bullets %}
+          <ul class="timeline-bullets">
+            {% for bullet in job.bullets %}
+            <li>{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
@@ -119,14 +132,17 @@
   </section>
 
   <section id="projects">
-    <h2 class="section-title">Projects</h2>
+    <h2 class="section-title" data-index="02">Projects</h2>
     <div class="content-grid">
       {% for project in site_data.projects %}
       <div class="card">
         <h3 class="card-item-title">
           {% if project.url %}
-          <a href="{{ project.url }}" target="_blank" 
-             onclick="if(typeof gtag==='function'){gtag('event','select_content',{content_type:'project',item_id:'{{ project.title | replace("'", "\\'") }}',url:'{{ project.url }}'});}">
+          <a href="{{ project.url }}" target="_blank"
+             data-track-event="select_content"
+             data-track-type="project"
+             data-track-id="{{ project.title }}"
+             data-track-url="{{ project.url }}">
             {{ project.title }} ↗
           </a>
           {% else %}
@@ -141,7 +157,7 @@
   </section>
 
   <section id="skills">
-    <h2 class="section-title">Technical Skills</h2>
+    <h2 class="section-title" data-index="03">Technical Skills</h2>
     <div class="card skills-card">
       {% for category, items in site_data.skills.categories.items() %}
       <div class="skill-category">
@@ -158,14 +174,17 @@
   </section>
 
   <section id="publications">
-    <h2 class="section-title">Publications</h2>
+    <h2 class="section-title" data-index="04">Publications</h2>
     <div class="content-grid">
       {% for pub in site_data.publications %}
       <div class="card">
         <h3 class="card-item-title">
           {% if pub.url %}
-          <a href="{{ pub.url }}" target="_blank" 
-             onclick="if(typeof gtag==='function'){gtag('event','select_content',{content_type:'publication',item_id:'{{ pub.title | replace("'", "\\'") }}',url:'{{ pub.url }}'});}">
+          <a href="{{ pub.url }}" target="_blank"
+             data-track-event="select_content"
+             data-track-type="publication"
+             data-track-id="{{ pub.title }}"
+             data-track-url="{{ pub.url }}">
             {{ pub.title }} ↗
           </a>
           {% else %}
