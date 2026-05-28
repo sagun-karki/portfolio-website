@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from flask import Flask, render_template, send_from_directory
 from flask_caching import Cache
 
@@ -8,6 +9,10 @@ app.config['CACHE_TYPE'] = 'simple'
 app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
 cache = Cache(app)
+
+@app.context_processor
+def inject_now():
+    return {'current_year': datetime.utcnow().year}
 
 @app.after_request
 def add_security_headers(response):
