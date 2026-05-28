@@ -1,7 +1,7 @@
 import os
 import json
 from datetime import datetime
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, request, make_response
 from flask_caching import Cache
 
 app = Flask(__name__)
@@ -89,6 +89,39 @@ def static_files(filename):
     response = send_from_directory('static', filename)
     response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
     return response
+
+@app.route('/sitemap.xml')
+@cache.cached(timeout=300)
+def sitemap():
+    try:
+        host = request.url_root.rstrip('/')
+        sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{host}/</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>{host}/contact</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{host}/privacy</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>"""
+        response = make_response(sitemap_xml)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+    except Exception as e:
+        app.logger.error(f'Sitemap Error: {e}')
+        return "Internal Server Error", 500
 
 @app.errorhandler(404)
 def page_not_found(e):
