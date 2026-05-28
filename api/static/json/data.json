@@ -3,7 +3,7 @@
     "name": "Sagun Karki",
     "title": "Data Scientist",
     "education": "B.S. in Computer Science and Data Science, Minor in Mathematics | University of Nebraska-Lincoln (May 2026)",
-    "about": "I’m a data scientist with a strong foundation in computer science, statistics, and applied mathematics. I am passionate about leveraging data to build intelligent applications and derive actionable insights. My core expertise lies in developing and deploying machine learning solutions, from data ingestion and processing to model training and inference.",
+    "about": "I architect high-throughput data infrastructure, production machine learning pipelines, and agentic orchestration frameworks. My core focus centers on building reliable distributed data systems, optimizing complex model inference, and transforming low-level telemetry logs into programmatic, system-level insights.",
     "socials": [
       {
         "platform": "LinkedIn",
@@ -19,32 +19,55 @@
   },
   "experience": [
     {
-      "role": "Data Analyst",
+      "role": "Data Analyst Intern",
       "company": "Nebraska Public Media",
       "logo": "NPM-logo.original.png",
       "duration": "Jan 2025 – Present",
-      "description": "Redesigned ETL pipelines with BigQuery, cutting runtime by 65% and enabling near real-time BI reporting for content and audience insights."
+      "stack": "GCP (BigQuery) · Dataform · R Shiny · Python · GitHub Actions",
+      "metric": "65% Runtime Reduction",
+      "bullets": [
+        "Developed predictive user engagement forecasting models to isolate high-churn listener segments, driving algorithmic insights that structured multi-platform content distribution frameworks.",
+        "Engineered an audio playback analytics pipeline via BigQuery sessionization to track user drop-off intervals, accelerating historical interaction processing speeds.",
+        "Refactored production R Shiny analytics engines to transition reporting frequencies from monthly to weekly cadences, drastically improving downstream data freshness.",
+        "Automated comprehensive data quality validation layers using Dataform and GitHub Actions CI/CD workflows, cutting GCP compute overhead by 30%."
+      ]
     },
     {
       "role": "Data Science Intern",
-      "company": "Raikes School (Allo Fiber)",
+      "company": "Allo Communications",
       "logo": "allo-fiber.svg",
-      "duration": "Sep 2024 – May 2025",
-      "description": "Developed an ensemble fraud detection system (HMM + SVM) for 40K+ IoT routers, reducing undetected fraudulent activities in SmartTown networks."
+      "duration": "Jan 2024 – Jan 2025",
+      "stack": "FastAPI · XGBoost · dbt · BigQuery · K-Means · Geospatial Analysis",
+      "metric": "50% Cycle Latency Cut",
+      "bullets": [
+        "Built and deployed an end-to-end XGBoost classification pipeline to isolate fraudulent subscription signatures, routing real-time inference logic through a containerized FastAPI service.",
+        "Executed unsupervised K-Means clustering and geospatial partition analysis on 1M+ raw network node telemetry logs, reducing investigative cycles for security teams by 50%.",
+        "Architected dbt data lineage and automated governance pipelines across multi-state infrastructure networks to establish audit-ready data trails."
+      ]
     },
     {
       "role": "Machine Learning Intern",
       "company": "Nebraska Water Center",
       "logo": "nwc.svg",
-      "duration": "Feb 2024 – Jan 2025",
-      "description": "Built a DNN for corn yield prediction using 20+ years of historical data, achieving 82% accuracy through feature engineering and PCA."
+      "duration": "Feb 2023 – Jan 2024",
+      "stack": "Python · PyTorch · BigQuery · Deep Learning (LSTM) · ETL Pipelines",
+      "metric": "40+ Years Multi-Source ETL",
+      "bullets": [
+        "Built automated Python ingestion scripts to extract, transform, and load 40+ years of fragmented, multi-format climate and environmental records into a centralized BigQuery warehouse.",
+        "Trained multivariate Deep Learning LSTM architectures to model and forecast localized agricultural yield fluctuations, benchmarking performance variations against ground-truth USDA data sets."
+      ]
     },
     {
       "role": "Undergraduate Research Assistant",
       "company": "University of Nebraska-Lincoln",
       "logo": "nebraska-n.jpg",
-      "duration": "Aug 2022 – August 2024",
-      "description": ""
+      "duration": "Aug 2022 – Aug 2024",
+      "stack": "Python · R · GraphQL · Network Analysis",
+      "metric": "",
+      "bullets": [
+        "Co-authored research modeling the U.S. economy as a network, analyzing structural relationships across economic and environmental metrics using graph-theoretic methods.",
+        "Contributed to pedestrian crash risk analysis integrating Open Street View imagery and traffic-calibrated location data across Lincoln, NE infrastructure."
+      ]
     }
   ],
   "projects": [
