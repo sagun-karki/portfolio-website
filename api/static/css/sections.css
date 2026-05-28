@@ -1,5 +1,5 @@
 /* ==========================================================================
-   6. HERO SECTION — Warm, Left-Aligned
+   6. HERO SECTION — Cyber-Engineer, Left-Aligned
    ========================================================================== */
 .hero {
     min-height: 100vh;
@@ -18,26 +18,175 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
-        gap: 2rem;
+        gap: 4rem;
     }
 }
 
+/* Hero title — massive, Space Grotesk */
 .hero-title {
-    font-size: 4.2rem;
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
     font-weight: 800;
     margin: 0;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     letter-spacing: -0.04em;
-    line-height: 1.05;
+    line-height: 1.0;
     background: none;
     -webkit-background-clip: initial;
     background-clip: initial;
+}
+
+/* Accent bracket decoration on name */
+.hero-title::before {
+    content: '< ';
+    color: var(--accent);
+    font-weight: 300;
+    opacity: 0.6;
+}
+
+.hero-title::after {
+    content: ' />';
+    color: var(--accent);
+    font-weight: 300;
+    opacity: 0.6;
 }
 
 .hero-text {
     width: 100%;
 }
 
+/* Hero subtitle — monospace, accent colored */
+.hero-subtitle {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent);
+    margin: 1.25rem 0 0 0;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Terminal-style prefix on subtitle */
+.hero-subtitle::before {
+    content: '$ ';
+    opacity: 0.5;
+}
+
+/* Education block */
+.hero-edu {
+    margin-top: 0.75rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-left: 0;
+    border-left: 2px solid var(--border-color);
+    padding-left: 1rem;
+    margin-left: 0.1rem;
+}
+
+.hero-edu-degree {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.hero-edu-univ {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+/* CTA buttons — sharp, technical */
+.hero-links {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.hero-socials {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.25rem;
+}
+
+.hero-socials a {
+    color: var(--text-tertiary);
+    display: inline-block;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-socials a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.hero-socials svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Brutalist buttons — 0px radius, strict borders */
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.4rem;
+    border-radius: 0px;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    transform: none;
+}
+
+/* Primary: solid accent fill */
+.hero-btn-primary {
+    background: var(--accent);
+    color: #000000;
+    border-color: var(--accent);
+    font-weight: 700;
+}
+
+.hero-btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/* Secondary: ghost / outline */
+.hero-btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.hero-btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   SVG Network Animation / ML Schematic
+   ========================================================================== */
 #vector-animation-container {
     width: 100%;
     height: 100%;
@@ -52,126 +201,63 @@
     width: 100%;
     height: auto;
     max-height: 80vh;
+    /* Use currentColor so SVG inherits from text-primary */
+    color: var(--text-primary);
 }
 
-.hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--color-primary);
-    margin: 1.25rem 0 0 0;
-    font-weight: 500;
-    line-height: 1.6;
+/* Structure lines — use currentColor (adapts to theme) */
+#ml-schematic-svg .structure-lines path,
+#ml-schematic-svg .structure-lines rect,
+#ml-schematic-svg .structure-lines line,
+#ml-schematic-svg .structure-lines circle {
+    color: var(--text-primary);
 }
 
-.hero-edu {
-    margin-top: 0.5rem;
-    margin-bottom: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
+/* In light mode, drop opacity slightly more for cleanliness */
+.light-theme #ml-schematic-svg .structure-lines path,
+.light-theme #ml-schematic-svg .structure-lines rect,
+.light-theme #ml-schematic-svg .structure-lines line {
+    stroke-opacity: 0.12 !important;
 }
 
-.hero-edu-degree {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.hero-edu-univ {
-    font-size: 0.85rem;
-    color: var(--color-text-tertiary);
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.hero-links {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: flex-start;
-    margin-bottom: 2rem;
-}
-
-.hero-socials {
-    display: flex;
-    justify-content: flex-start;
-    gap: 1.25rem;
-}
-
-.hero-socials a {
-    color: var(--color-text-tertiary);
-    display: inline-block;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.hero-socials a:hover {
-    color: var(--color-accent-primary);
-    transform: translateY(-2px);
-}
-
-.hero-socials svg {
-    width: 22px;
-    height: 22px;
-}
-
-.hero-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.62rem 1.2rem;
-    border-radius: var(--radius-pill);
-    border: 1px solid transparent;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 1.1;
-    text-decoration: none;
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.hero-btn:hover {
-    transform: translateY(-1px);
-}
-
-.hero-btn-primary {
-    background: var(--color-primary);
-    color: #fff;
-}
-
-.hero-btn-primary:hover {
-    background: color-mix(in srgb, var(--color-primary) 90%, #000 10%);
-}
-
-.hero-btn-secondary {
-    color: var(--color-secondary);
-    border-color: color-mix(in srgb, var(--color-secondary) 55%, transparent);
-    background: transparent;
-}
-
-.hero-btn-secondary:hover {
-    background-color: color-mix(in srgb, var(--color-secondary) 10%, transparent);
+/* Data streams use accent gradient which uses var(--color-primary) = var(--accent) */
+.light-theme #ml-schematic-svg .data-streams path {
+    opacity: 0.7;
 }
 
 /* ==========================================================================
-   7. SECTIONS
+   7. SECTION TITLES
    ========================================================================== */
 .section-title {
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-primary);
+    letter-spacing: 0.25em;
+    color: var(--accent);
     text-align: left;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2.5rem;
+}
+
+/* Section number prefix */
+.section-title::before {
+    content: attr(data-index);
+    color: var(--text-tertiary);
+    font-size: 0.65rem;
 }
 
 .section-title::after {
     content: "";
     height: 1px;
     flex-grow: 1;
-    background: var(--color-border);
+    background: var(--accent);
+    opacity: 0.4;
 }
 
 /* ==========================================================================
@@ -180,21 +266,24 @@
 .about-section .card {
     background: transparent;
     border: none;
+    border-left: 2px solid var(--accent);
     box-shadow: none;
-    padding: 0;
+    padding: 0 0 0 2rem;
     border-radius: 0;
 }
 
 .about-section .card:hover {
     box-shadow: none;
-    border-color: transparent;
+    border-color: var(--accent);
+    background: transparent;
 }
 
 .about-section .card p {
+    font-family: var(--font-sans);
     font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    max-width: 65ch;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 68ch;
 }
 
 /* ==========================================================================
@@ -212,21 +301,25 @@
 }
 
 .skill-title {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.15em;
     margin-top: 0;
-    margin-bottom: 0.5rem;
-    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.4rem;
 }
 
 .skill-category p {
     margin: 0;
-    color: var(--color-text-secondary);
-    font-size: 0.925rem;
-    line-height: 1.7;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 450;
 }
 
 .skill-logos {
@@ -234,34 +327,46 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.25rem;
-    margin-top: 1.5rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .skill-logos img {
-    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-    opacity: 0.6;
+    transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
+    opacity: 0.4;
     filter: grayscale(100%);
+}
+
+/* Light mode logos darken instead of going grey */
+.light-theme .skill-logos img {
+    filter: grayscale(100%) brightness(0);
+    opacity: 0.35;
 }
 
 .skill-logos img:hover {
     opacity: 1;
     filter: grayscale(0%);
-    transform: scale(1.08);
+    transform: scale(1.1) translateY(-2px);
+}
+
+.light-theme .skill-logos img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
 /* ==========================================================================
-   11. EXPERIENCE — Full-Width Soft Rows
+   11. EXPERIENCE — Full-Width Sharp Rows
    ========================================================================== */
 .timeline {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0; /* flush stacking with merged borders */
     max-width: 100%;
     margin: 0;
 }
 
-/* Kill all legacy pseudo-elements */
 .timeline::after,
 .timeline-item::after {
     display: none;
@@ -273,9 +378,10 @@
     padding: 0;
     position: relative;
     opacity: 0;
-    transform: translateY(16px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-bottom: 1.5rem;
+    transform: translateY(12px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 0;
 }
 
 .timeline-item.is-visible {
@@ -283,69 +389,148 @@
     transform: translateY(0);
 }
 
-/* Each experience entry — strict 4-column horizontal grid with container fix */
+/* Stacked timeline rows — merged borders */
+.timeline-item:not(:last-child) .timeline-content.card {
+    border-bottom: none;
+}
+
+/* Each experience entry — log block layout */
 .timeline-content.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem 2rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0px;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Top row: logo + title/company + right-aligned meta */
+.timeline-entry-top {
     display: grid;
-    grid-template-columns: 60px 220px 1fr 120px;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    transition: border-color 0.3s ease;
+    grid-template-columns: 52px 1fr auto;
+    align-items: flex-start;
+    gap: 1.25rem;
 }
 
 .timeline-content.card .card-logo {
     margin: 0;
-    max-height: 60px;
-    width: 60px;
+    max-height: 52px;
+    width: 52px;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 0px;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+}
+
+.light-theme .timeline-content.card .card-logo {
+    filter: grayscale(100%) brightness(0);
+    opacity: 0.6;
 }
 
 .timeline-content.card .card-item-header {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.2rem;
 }
 
 .timeline-content.card .card-item-title {
     margin: 0;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .timeline-content.card .card-item-subtitle {
     margin: 0;
-    color: var(--color-text);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 400;
 }
 
-.timeline-content.card .card-item-meta {
+/* Right column: duration + metric badge */
+.timeline-entry-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.timeline-duration {
+    margin: 0 !important;
     text-align: right;
-    margin: 0;
-    color: var(--color-secondary);
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
-.timeline-content.card .card-item-desc {
+/* Tech stack tag line */
+.timeline-stack {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
     margin: 0;
-    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.timeline-stack::before {
+    content: 'stack: ';
+    color: var(--accent);
+    opacity: 0.6;
+}
+
+/* Bullet list — monospace, tight */
+.timeline-bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.timeline-bullets li {
+    font-family: var(--font-sans);
     font-size: 0.925rem;
-    line-height: 1.6;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.timeline-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.65rem;
+    top: 0.2rem;
 }
 
 .timeline-item:hover .timeline-content.card {
-    border-color: var(--color-primary);
-    transform: none;
-    box-shadow: 0 0 20px rgba(230, 126, 34, 0.1);
+    border-color: var(--accent);
+    background-color: var(--accent-dim);
+    box-shadow: inset 4px 0 0 var(--accent);
 }
 
-/* Remove particles container */
+.timeline-item:hover .timeline-content.card .card-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Remove particles */
 #tsparticles {
     display: none !important;
 }

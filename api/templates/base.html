@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Sagun Karki - Portfolio and Professional Profile">
+  <meta name="description" content="Sagun Karki — Data Scientist specializing in predictive modeling, machine learning pipelines, and scalable data systems.">
   <title>{% block title %}Sagun Karki{% endblock %}</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -26,16 +26,21 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   
   <!-- Critical CSS and Fonts -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-  <!-- Theme Initialization (prevents flash of unstyled content) -->
+  <!-- Theme Initialization (prevents flash of unstyled content)
+       Dark is the default (:root). Light mode is opt-in via .light-theme class. -->
   <script>
     (function() {
-      const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      if (theme === 'dark') document.documentElement.classList.add('dark-theme');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') {
+        document.documentElement.classList.add('light-theme');
+      } else if (!stored && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.classList.add('light-theme');
+      }
     })();
   </script>
 

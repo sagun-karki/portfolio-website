@@ -22,28 +22,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- THEME LOGIC ---
+    // Dark is the default (:root). Light mode is .light-theme.
     function updateThemeIcon() {
         if (!themeIcon) return;
-        themeIcon.textContent = docElement.classList.contains('dark-theme') ? 'light_mode' : 'dark_mode';
+        themeIcon.textContent = docElement.classList.contains('light-theme') ? 'dark_mode' : 'light_mode';
     }
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const isCurrentlyDark = docElement.classList.toggle('dark-theme');
-            localStorage.setItem('theme', isCurrentlyDark ? 'dark' : 'light');
+            const isNowLight = docElement.classList.toggle('light-theme');
+            localStorage.setItem('theme', isNowLight ? 'light' : 'dark');
             updateThemeIcon();
             // GA4: Track theme change
             if (typeof gtag === 'function') {
                 gtag('event', 'theme_change', {
-                    theme_selected: isCurrentlyDark ? 'dark' : 'light'
+                    theme_selected: isNowLight ? 'light' : 'dark'
                 });
             }
         });
     }
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
-            docElement.classList.toggle('dark-theme', e.matches);
+            docElement.classList.toggle('light-theme', e.matches);
             updateThemeIcon();
         }
     });
@@ -158,6 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (homeLink) {
         setTimeout(() => activateNavLink(homeLink), 150);
     }
+
+    // --- GA4: Delegated tracking for project & publication links ---
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[data-track-event]');
+        if (!link || typeof gtag !== 'function') return;
+        gtag('event', link.dataset.trackEvent, {
+            content_type: link.dataset.trackType,
+            item_id:      link.dataset.trackId,
+            url:          link.dataset.trackUrl,
+        });
+    });
 });
 
 // --- ML SCHEMATIC LOADER ANIMATION ---
