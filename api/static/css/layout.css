@@ -1,5 +1,5 @@
 /* ==========================================================================
-   4. LAYOUT COMPONENTS (HEADER, MAIN, FOOTER)
+   4. LAYOUT COMPONENTS (HEADER, MAIN, FOOTER) — Cyber-Engineer
    ========================================================================== */
 main {
     flex-grow: 1;
@@ -8,48 +8,64 @@ main {
 .main-header {
     position: fixed;
     top: 1.5rem;
-    /* The "Detached" gap */
     left: 50%;
     transform: translateX(-50%);
     width: auto;
-    /* Shrink to content */
     min-width: 500px;
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-/* Removed .main-header.scrolled as it's handled via JS-driven scale/position */
 
 .main-nav {
     background: transparent;
     position: relative;
     z-index: 1;
     border: 1px solid transparent;
-    border-radius: var(--radius-pill);
+    border-radius: 0px;
     padding: 0.5rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: none;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* No blur at rest — only activates on scroll */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: background-color 0.4s ease,
+                border-color 0.4s ease,
+                backdrop-filter 0.4s ease,
+                box-shadow 0.4s ease;
 }
 
+/* Glassmorphism — only active after scroll detach */
 .main-header.scrolled .main-nav {
-    /* background: var(--color-nav-bg); */
-    backdrop-filter: blur(15px);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.05'/%3E%3C/svg%3E");
-    border: 0.5px solid var(--color-border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(40px) saturate(200%) brightness(0.9);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(0.9);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow:
+        /* Outer glow */
+        0 8px 40px rgba(0, 0, 0, 0.6),
+        /* Top highlight — core of the glass illusion */
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        /* Bottom subtle shadow line */
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+        /* Left edge micro-highlight */
+        inset 1px 0 0 rgba(255, 255, 255, 0.06),
+        /* Accent glow bleed */
+        0 0 0 0.5px rgba(0, 255, 0, 0.06);
 }
 
-/* Removed ::after to avoid double-stacking or blurring children */
-
-/* Dark theme overrides for scrolled nav - keeping same vibrant gradient for both */
-.dark-theme.main-header.scrolled .main-nav,
-.dark-theme .main-header.scrolled .main-nav {
-    backdrop-filter: blur(15px);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.03'/%3E%3C/svg%3E");
-    box-shadow: 0 8px 32px rgba(32, 32, 32, 0.4);
+/* Light mode glass */
+.light-theme .main-header.scrolled .main-nav {
+    backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.04),
+        inset 1px 0 0 rgba(255, 255, 255, 0.6);
 }
 
 .page-content {
@@ -65,9 +81,11 @@ main {
 .main-footer {
     flex-shrink: 0;
     background-color: transparent;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text-tertiary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-tertiary);
     padding: 2.5rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
 }
 
 .footer-content {
@@ -81,5 +99,13 @@ main {
 
 .footer-content p {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+}
+
+/* Terminal-style footer prefix */
+.footer-content p::before {
+    content: '> ';
+    color: var(--accent);
+    font-weight: 700;
 }
