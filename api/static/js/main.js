@@ -161,11 +161,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (contactLink) {
             setTimeout(() => activateNavLink(contactLink), 150);
         }
+        if (typeof gtag === 'function') {
+            gtag('event', 'contact_page_view');
+        }
     } else if (path === '/privacy') {
         // Clear active classes and hide navigation pill on privacy page
         navLinks.forEach(l => l.classList.remove('active'));
         if (navIndicator) {
             navIndicator.style.width = '0px';
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'privacy_page_view');
         }
     } else {
         const homeLink = document.querySelector('.nav-links a[href="#home"], .nav-links a[href="/#home"]');
