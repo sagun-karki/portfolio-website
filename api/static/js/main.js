@@ -174,15 +174,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- GA4: Delegated tracking for project & publication links ---
+    // --- GA4: Delegated tracking for external links & interactions ---
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a[data-track-event]');
         if (!link || typeof gtag !== 'function') return;
-        gtag('event', link.dataset.trackEvent, {
-            content_type: link.dataset.trackType,
-            item_id:      link.dataset.trackId,
-            url:          link.dataset.trackUrl,
-        });
+
+        const eventName = link.dataset.trackEvent;
+        if (eventName === 'social_engagement') {
+            gtag('event', 'social_engagement', {
+                platform: link.dataset.trackPlatform,
+                location: link.dataset.trackLocation
+            });
+        } else {
+            gtag('event', eventName, {
+                content_type: link.dataset.trackType,
+                item_id:      link.dataset.trackId,
+                url:          link.dataset.trackUrl,
+            });
+        }
     });
 });
 

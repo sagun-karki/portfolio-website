@@ -93,11 +93,10 @@ def static_files(filename):
 @app.errorhandler(404)
 def page_not_found(e):
     try:
-        site_data = load_site_data()
-        return render_template('404.html', site_data=site_data), 404
+        return send_from_directory(os.path.join(app.root_path, '..'), '404.html'), 404
     except Exception as ex:
         app.logger.error(f'404 Error: {ex}')
-        return render_template('404.html', site_data={}), 404
+        return "404 Not Found", 404
 
 if __name__ == '__main__':
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes')

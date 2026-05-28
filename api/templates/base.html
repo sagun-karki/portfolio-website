@@ -100,7 +100,9 @@
       <div class="social-links">
         {% for social in site_data.profile.socials %}
         <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}"
-           onclick="if(typeof gtag==='function'){gtag('event','social_engagement',{platform:'{{ social.platform }}',location:'footer'});}">
+           data-track-event="social_engagement"
+           data-track-platform="{{ social.platform }}"
+           data-track-location="footer">
           <svg><use href="{{ social.icon }}"></use></svg>
         </a>
         {% endfor %}

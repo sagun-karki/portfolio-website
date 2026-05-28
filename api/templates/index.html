@@ -22,7 +22,9 @@
     <div class="hero-socials">
       {% for social in site_data.profile.socials %}
       <a href="{{ social.url }}" target="_blank" aria-label="{{ social.platform }}" 
-         onclick="if(typeof gtag==='function'){gtag('event','social_engagement',{platform:'{{ social.platform }}',location:'hero'});}">
+         data-track-event="social_engagement"
+         data-track-platform="{{ social.platform }}"
+         data-track-location="hero">
         <svg>
           <use href="{{ social.icon }}"></use>
         </svg>
