@@ -17,3 +17,7 @@
 - DO NOT modify .gitignore without explicit permission; But you can always add new rules to .gitignore if needed. Never remove any existing rules from .gitignore.
 - When refactoring, prioritize memory efficiency. When generating HTML, ensure accessibility (ARIA labels) and responsive design.
 - **CSS Architecture**: Refer to `.agent/css_structure.md` for details on how CSS files are modularized in `api/static/css/`. Do not edit `styles.css` directly; edit its modular components.
+- **Theme System**: Refer to `.agent/theme_system.md` for theme specifications. The default mode is Dark (no class). Light mode uses `.light-theme` class on `<html>`. NEVER use `.dark-theme`.
+- **JavaScript & Telemetry**: Refer to `.agent/js_structure.md` for tracking and client-side behavior. Ensure no inline event handlers (like onclick) are placed inside templates. Use delegated tracking instead.
+- **Data Schemas**: Refer to `.agent/data_structure.md` for JSON structures. Experience entries use structured fields like `bullets[]` and `stack` instead of generic `description` strings.
+
