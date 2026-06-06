@@ -272,7 +272,7 @@
     border: none;
     border-left: 2px solid var(--accent);
     box-shadow: none;
-    padding: 0 0 0 2rem;
+    padding: 0.5rem 0 0.5rem 2rem;
     border-radius: 0;
 }
 
@@ -288,6 +288,7 @@
     line-height: 1.85;
     color: var(--text-secondary);
     max-width: 68ch;
+    margin-bottom: 0;
 }
 
 /* ==========================================================================

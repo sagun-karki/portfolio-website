@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="The page you are looking for does not exist on Sagun Karki's portfolio.">
+    <title>404 - Page Not Found | Sagun Karki</title>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQGJ05YPPF"></script>
     <script>
@@ -15,121 +18,79 @@
           page_path: window.location.pathname
       });
     </script>
-    <title>404 - Data Not Found</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
+    <!-- Preconnect and Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <!-- Theme Initialization -->
+    <script>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light') {
+          document.documentElement.classList.add('light-theme');
+        } else if (!stored && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.classList.add('light-theme');
+        }
+        document.documentElement.classList.add('js');
+      })();
+    </script>
+
+    <style>
         body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            color: #e0e0e0;
+            margin: 0;
+            padding: 2rem;
         }
 
         .container {
             text-align: center;
             position: relative;
             z-index: 10;
+            max-width: 550px;
+            background: transparent;
+            padding: 0;
         }
 
         h1 {
             font-size: 8rem;
-            font-weight: bold;
-            background: linear-gradient(90deg, #00d9ff, #00ff88, #00d9ff);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 3s ease infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 200% center; }
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 0 1rem 0;
+            font-family: var(--font-heading);
+            letter-spacing: -0.04em;
+            line-height: 1.0;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            color: #8892b0;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
+            font-size: 1rem;
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            margin: 0 0 2.5rem 0;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
         }
 
         .message {
-            font-size: 1rem;
-            color: #64ffda;
-            margin-bottom: 30px;
-            max-width: 500px;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            font-family: var(--font-sans);
+            color: var(--text-secondary);
+            margin: 0 0 3rem 0;
+            line-height: 1.85;
         }
 
-        .home-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border: 2px solid #64ffda;
-            color: #64ffda;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .home-btn:hover {
-            background: #64ffda;
-            color: #0f0f1a;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
-        }
-
-        /* Background grid */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.1;
-        }
-
-        /* Floating data points */
-        .data-point {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #64ffda;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.3; }
-        }
-
-        /* Code snippet decoration */
-        .code-snippet {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            font-size: 0.7rem;
-            color: #8892b0;
-            opacity: 0.5;
-            text-align: right;
-            z-index: 1;
-        }
-
-        /* SVG Container */
+        /* SVG Neural Network Container */
         .svg-container {
             position: fixed;
             top: 0;
@@ -140,31 +101,32 @@
             pointer-events: none;
         }
 
-        /* Animated chart lines */
-        .chart-line {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawLine 3s ease-out forwards;
-        }
-
-        @keyframes drawLine {
-            to { stroke-dashoffset: 0; }
-        }
-
-        /* Pulsing nodes */
+        /* Animated neural network nodes */
         .node {
             animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            50% { opacity: 1; transform: scale(1.25); }
         }
 
         .node:nth-child(2) { animation-delay: 0.5s; }
         .node:nth-child(3) { animation-delay: 1s; }
         .node:nth-child(4) { animation-delay: 1.5s; }
         .node:nth-child(5) { animation-delay: 2s; }
+        .node:nth-child(6) { animation-delay: 2.5s; }
+
+        /* Animated chart lines */
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 4s ease-out forwards;
+        }
+
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
 
         /* Scanning effect */
         .scan-line {
@@ -173,92 +135,117 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #64ffda, transparent);
-            animation: scan 4s linear infinite;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: scan 5s linear infinite;
             z-index: 2;
-            opacity: 0.3;
+            opacity: 0.25;
         }
 
         @keyframes scan {
             0% { top: 0%; }
             100% { top: 100%; }
         }
+
+        /* Floating data points */
+        .data-point {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 0; /* brutalist 0px radius */
+            opacity: 0.5;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.2; }
+        }
+
+        /* Decorative code snippet */
+        .code-snippet {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--text-tertiary);
+            opacity: 0.6;
+            text-align: right;
+            z-index: 1;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
-    <!-- Background Grid SVG -->
-    <svg class="grid-bg" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#64ffda" stroke-width="0.5"/>
-            </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-    </svg>
-
     <!-- Animated Data Visualization SVG -->
     <svg class="svg-container" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800">
-        <!-- Animated neural network nodes -->
-        <circle class="node" cx="200" cy="150" r="4" fill="#64ffda"/>
-        <circle class="node" cx="400" cy="250" r="4" fill="#00d9ff"/>
-        <circle class="node" cx="600" cy="180" r="4" fill="#00ff88"/>
-        <circle class="node" cx="800" cy="300" r="4" fill="#64ffda"/>
-        <circle class="node" cx="1000" cy="200" r="4" fill="#00d9ff"/>
-        <circle class="node" cx="1200" cy="150" r="4" fill="#00ff88"/>
-        
         <!-- Connection lines -->
-        <line x1="200" y1="150" x2="400" y2="250" stroke="#64ffda" stroke-width="1" opacity="0.3"/>
-        <line x1="400" y1="250" x2="600" y2="180" stroke="#00d9ff" stroke-width="1" opacity="0.3"/>
-        <line x1="600" y1="180" x2="800" y2="300" stroke="#00ff88" stroke-width="1" opacity="0.3"/>
-        <line x1="800" y1="300" x2="1000" y2="200" stroke="#64ffda" stroke-width="1" opacity="0.3"/>
-        <line x1="1000" y1="200" x2="1200" y2="150" stroke="#00d9ff" stroke-width="1" opacity="0.3"/>
+        <g stroke="var(--border-color)" stroke-width="1" stroke-opacity="0.15" fill="none">
+            <line x1="200" y1="150" x2="400" y2="250" />
+            <line x1="400" y1="250" x2="600" y2="180" />
+            <line x1="600" y1="180" x2="800" y2="300" />
+            <line x1="800" y1="300" x2="1000" y2="200" />
+            <line x1="1000" y1="200" x2="1200" y2="150" />
+        </g>
 
-        <!-- Animated chart -->
+        <!-- Animated neural network nodes -->
+        <circle class="node" cx="200" cy="150" r="4" fill="var(--accent)"/>
+        <circle class="node" cx="400" cy="250" r="4" fill="var(--accent)"/>
+        <circle class="node" cx="600" cy="180" r="4" fill="var(--accent)"/>
+        <circle class="node" cx="800" cy="300" r="4" fill="var(--accent)"/>
+        <circle class="node" cx="1000" cy="200" r="4" fill="var(--accent)"/>
+        <circle class="node" cx="1200" cy="150" r="4" fill="var(--accent)"/>
+
+        <!-- Animated chart lines -->
         <path class="chart-line" d="M 0 600 Q 200 550 400 580 T 800 520 T 1200 560 T 1440 540" 
-              fill="none" stroke="#00d9ff" stroke-width="2" opacity="0.5"/>
+              fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.25"/>
         
         <path class="chart-line" d="M 0 650 Q 300 600 500 630 T 900 590 T 1300 620 T 1440 600" 
-              fill="none" stroke="#00ff88" stroke-width="2" opacity="0.4" style="animation-delay: 1s;"/>
+              fill="none" stroke="var(--text-secondary)" stroke-width="1.5" opacity="0.15" style="animation-delay: 1s;"/>
 
         <!-- Scatter plot points -->
-        <circle cx="300" cy="400" r="3" fill="#64ffda" opacity="0.6">
-            <animate attributeName="cy" values="400;380;400" dur="3s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="500" cy="450" r="3" fill="#00d9ff" opacity="0.6">
-            <animate attributeName="cy" values="450;430;450" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="700" cy="420" r="3" fill="#00ff88" opacity="0.6">
-            <animate attributeName="cy" values="420;400;420" dur="3.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="900" cy="480" r="3" fill="#64ffda" opacity="0.6">
-            <animate attributeName="cy" values="480;460;480" dur="4.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="1100" cy="440" r="3" fill="#00d9ff" opacity="0.6">
-            <animate attributeName="cy" values="440;420;440" dur="3.8s" repeatCount="indefinite"/>
-        </circle>
+        <g fill="var(--accent)" opacity="0.4">
+            <circle cx="300" cy="400" r="2.5">
+                <animate attributeName="cy" values="400;380;400" dur="3.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="500" cy="450" r="2.5">
+                <animate attributeName="cy" values="450;430;450" dur="4.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="700" cy="420" r="2.5">
+                <animate attributeName="cy" values="420;400;420" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="900" cy="480" r="2.5">
+                <animate attributeName="cy" values="480;460;480" dur="5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="1100" cy="440" r="2.5">
+                <animate attributeName="cy" values="440;420;440" dur="4.2s" repeatCount="indefinite"/>
+            </circle>
+        </g>
 
-        <!-- Binary code rain effect (simplified) -->
-        <text x="100" y="100" fill="#64ffda" font-size="12" opacity="0.2" font-family="monospace">01001000</text>
-        <text x="150" y="120" fill="#00d9ff" font-size="12" opacity="0.2" font-family="monospace">01100101</text>
-        <text x="200" y="140" fill="#00ff88" font-size="12" opacity="0.2" font-family="monospace">01101100</text>
-        <text x="1300" y="200" fill="#64ffda" font-size="12" opacity="0.2" font-family="monospace">01101100</text>
-        <text x="1250" y="220" fill="#00d9ff" font-size="12" opacity="0.2" font-family="monospace">01101111</text>
-        <text x="1200" y="240" fill="#00ff88" font-size="12" opacity="0.2" font-family="monospace">01110111</text>
+        <!-- Binary code rain effect -->
+        <g fill="var(--text-tertiary)" font-size="10" opacity="0.15" font-family="var(--font-mono)">
+            <text x="100" y="100">01001000</text>
+            <text x="150" y="120">01100101</text>
+            <text x="200" y="140">01101100</text>
+            <text x="1300" y="200">01101100</text>
+            <text x="1250" y="220">01101111</text>
+            <text x="1200" y="240">01110111</text>
+        </g>
     </svg>
 
     <!-- Scanning line -->
     <div class="scan-line"></div>
 
     <!-- Main Content -->
-    <div class="container">
+    <main class="container">
         <h1>404</h1>
         <p class="subtitle">DATA NOT FOUND</p>
         <p class="message">
-            The dataset you're looking for doesn't exist in our database.<br>
+            The dataset you are looking for does not exist in our database.<br>
             Like a null value in an empty table, this page returned no results.
         </p>
-        <a href="/" class="home-btn">Return to Base</a>
-    </div>
+        <a href="/" id="btn-return-home" class="hero-btn hero-btn-primary">Return to Base</a>
+    </main>
 
     <!-- Decorative code snippet -->
     <div class="code-snippet">
@@ -271,9 +258,7 @@
     <script>
         // Create floating data points
         function createDataPoints() {
-            const container = document.querySelector('.container');
-            const colors = ['#64ffda', '#00d9ff', '#00ff88'];
-            
+            const colors = ['var(--accent)', 'var(--text-secondary)'];
             for (let i = 0; i < 15; i++) {
                 const point = document.createElement('div');
                 point.className = 'data-point';
@@ -281,11 +266,10 @@
                 point.style.top = Math.random() * 100 + '%';
                 point.style.background = colors[Math.floor(Math.random() * colors.length)];
                 point.style.animationDelay = Math.random() * 3 + 's';
-                point.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                point.style.animationDuration = (Math.random() * 3 + 5) + 's';
                 document.body.appendChild(point);
             }
         }
-
         createDataPoints();
     </script>
 </body>
