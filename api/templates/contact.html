@@ -22,8 +22,8 @@
         <span class="material-symbols-outlined" style="color: var(--accent); font-size: 1.5rem;">mail</span>
         <div style="display: flex; flex-direction: column;">
           <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-tertiary); text-transform: uppercase;">Email Address</span>
-          <a href="mailto:sagunk064@gmail.com" class="card-item-title" style="margin: 0; text-decoration: none; color: var(--text-primary); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">
-            sagunk064@gmail.com
+          <a href="mailto:{{ site_data.profile.email }}" class="card-item-title" style="margin: 0; text-decoration: none; color: var(--text-primary); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">
+            {{ site_data.profile.email }}
           </a>
         </div>
       </div>
