@@ -14,10 +14,11 @@ All portfolio content is dynamically rendered from `api/static/json/data.json`. 
 General metadata regarding the developer persona.
 - `name` (string)
 - `title` (string) - Set to "DATA SCIENTIST"
+- `email` (string) - Contact mailto address
 - `education` (string) - UNL, Minor in Math, etc.
 - `about` (string) - Architecture-first, high-throughput systems bio/intro copy.
 - `socials` (array of objects)
-  - `name` (string)
+  - `platform` (string)
   - `url` (string)
   - `icon` (string)
 
@@ -28,13 +29,13 @@ Timeline entries displayed in the Experience section.
 - `logo` (string) - SVG/Image path under static assets.
 - `duration` (string) - Start and end dates.
 - `stack` (string) - Monospace tech list prefix (rendered with `stack:`).
-- `metric` (string) - Core telemetry/engineering metric (note: currently kept in JSON but excluded from the rendered UI per layout updates).
+- `metric` (string) - Core impact metric rendered as a badge next to duration.
 - `bullets` (array of strings) - Rendered as a list in `index.html` with custom `▸` markers.
 
 ### 3. `projects`
 Showcased software developments.
 - `title` (string)
-- `technologies` (array of strings)
+- `technologies` (string) - Comma-separated tech list shown as meta text.
 - `description` (string)
 - `url` (string, optional)
 

@@ -8,7 +8,7 @@ The main stylesheet `api/static/css/styles.css` is an entry point that imports s
 The current design uses a **brutalist, technical aesthetic**:
 - **Dark mode (default)**: Pure black `#000000`, neon green `#00ff00` accent, monospace body text, 0px border-radius, subtle white grid overlay.
 - **Light mode ("Blueprint")**: Pure white `#ffffff`, forest green `#006633` accent, near-invisible grid, crisp black 1px borders.
-- **Fonts**: `Space Grotesk` (headings), `JetBrains Mono` (body/code/labels).
+- **Fonts**: `Space Grotesk` (headings), `IBM Plex Mono` (body/code/labels).
 
 ## Theme System
 
@@ -32,7 +32,7 @@ When updating styles, edit the appropriate modular file:
 - **`components.css`**: `.card` (0px radius, 1px solid border, accent glow on hover), `.content-grid` (flush stacking with merged borders), `.card-logo`, `.card-item-*` type hierarchy.
 - **`sections.css`**: Hero (angle-bracket title decorators, terminal subtitle prefix, ghost/solid buttons), section titles (numbered via `data-index`), About (left-accent border), Skills (monospace category titles), Timeline (merged-border rows with inset accent on hover), SVG adaptation for both themes.
 - **`responsive.css`**: Media queries for tablet (`max-width: 1024px`) and mobile (`max-width: 767px`). Mobile nav is a dropdown with 0px radius and accent hover. Hero title brackets hidden on mobile.
-- **`styles.css`**: Entry point only. Do not add rules here — only `@import` statements.
+- **`styles.css`**: Legacy cascade-order reference only. Stylesheets are linked individually from `base.html` (and `404.html`) to avoid `@import` waterfalls. Do not add rules here.
 
 ## Key CSS Variables Reference
 

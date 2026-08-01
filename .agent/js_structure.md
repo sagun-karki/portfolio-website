@@ -38,4 +38,4 @@ This document details the structure and responsibilities of the JavaScript code 
 
 ### 4. Visibility Animations
 - `IntersectionObserver` detects when cards/timeline-items enter the viewport.
-- Adds an `.in-view` class to trigger smooth CSS micro-animations.
+- Adds an `.is-visible` class to trigger smooth CSS micro-animations.
