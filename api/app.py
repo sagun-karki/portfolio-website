@@ -11,8 +11,12 @@ app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 cache = Cache(app)
 
 @app.context_processor
-def inject_now():
-    return {'current_year': datetime.utcnow().year}
+def inject_globals():
+    return {
+        'current_year': datetime.utcnow().year,
+        'site_url': request.url_root.rstrip('/'),
+        'canonical_path': request.path,
+    }
 
 @app.after_request
 def add_security_headers(response):
@@ -88,6 +92,18 @@ def contact():
 def static_files(filename):
     response = send_from_directory('static', filename)
     response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
+    return response
+
+@app.route('/robots.txt')
+def robots():
+    host = request.url_root.rstrip('/')
+    body = f"""User-agent: *
+Allow: /
+
+Sitemap: {host}/sitemap.xml
+"""
+    response = make_response(body)
+    response.headers['Content-Type'] = 'text/plain'
     return response
 
 @app.route('/sitemap.xml')

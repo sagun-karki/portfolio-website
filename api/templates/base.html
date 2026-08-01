@@ -5,8 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Sagun Karki — Data Scientist specializing in predictive modeling, machine learning pipelines, and scalable data systems.">
+  <meta name="description" content="{% block meta_description %}Sagun Karki — Data Scientist specializing in predictive modeling, machine learning pipelines, and scalable data systems.{% endblock %}">
   <title>{% block title %}Sagun Karki{% endblock %}</title>
+  <link rel="canonical" href="{{ site_url }}{{ canonical_path }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sagun Karki">
+  <meta property="og:title" content="{% block og_title %}Sagun Karki — Data Scientist{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Data Scientist specializing in predictive modeling, machine learning pipelines, and scalable data systems.{% endblock %}">
+  <meta property="og:url" content="{{ site_url }}{{ canonical_path }}">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{% block twitter_title %}Sagun Karki — Data Scientist{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Data Scientist specializing in predictive modeling, machine learning pipelines, and scalable data systems.{% endblock %}">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQGJ05YPPF"></script>
