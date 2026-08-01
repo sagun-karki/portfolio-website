@@ -1,13 +1,6 @@
 /* ==========================================================================
-   MAIN STYLESHEET
-   This file imports all modular CSS files in the correct cascade order.
-   See .agent/css_structure.md for details.
+   MAIN STYLESHEET (legacy entry point)
+   Styles are now linked individually from base.html to avoid @import waterfalls.
+   Keep this file only as a documented cascade order reference.
+   Order: variables → global → layout → navigation → components → sections → responsive
    ========================================================================== */
-
-@import url('variables.css');
-@import url('global.css');
-@import url('layout.css');
-@import url('navigation.css');
-@import url('components.css');
-@import url('sections.css');
-@import url('responsive.css');
