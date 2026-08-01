@@ -557,3 +557,97 @@
 #tsparticles {
     display: none !important;
 }
+
+/* ==========================================================================
+   SUBPAGES (Contact / Privacy)
+   ========================================================================== */
+.subpage {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 2rem) var(--container-padding) 6rem;
+}
+
+.subpage-card {
+    opacity: 1;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.subpage-heading {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.subpage-lead {
+    margin-top: 0.5rem;
+}
+
+.subpage-lead.card-item-desc {
+    margin-top: 1rem;
+}
+
+.subpage-footer-action {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+}
+
+.contact-channel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-channel-icon {
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.contact-channel-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-channel-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+}
+
+.contact-channel-link {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+}
+
+.contact-channel-link:hover {
+    color: var(--accent);
+}
+
+.privacy-callout {
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+}
+
+.privacy-code {
+    font-family: var(--font-mono);
+    color: var(--accent);
+}

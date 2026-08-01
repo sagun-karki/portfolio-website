@@ -100,12 +100,20 @@
 }
 
 .social-links a:hover,
-.footer-content a:hover {
+.footer-content a:hover,
+.footer-text-link:hover {
     color: var(--accent);
 }
 
+.footer-text-link {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    margin-left: 0.5rem;
+    transition: color 0.2s ease;
+}
+
 /* Global text link underline — accent colored */
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn) {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn):not(.footer-text-link):not(.contact-channel-link) {
     color: inherit;
     text-decoration: none;
     position: relative;
@@ -113,7 +121,7 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(
     transition: color 0.2s ease;
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn)::after {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn):not(.footer-text-link):not(.contact-channel-link)::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -127,11 +135,11 @@ a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(
     opacity: 0.6;
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):hover {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn):not(.footer-text-link):not(.contact-channel-link):hover {
     color: var(--accent);
 }
 
-a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):hover::after {
+a:not(.nav-links a):not(.nav-brand):not(.social-links a):not(.hero-links a):not(.hero-btn):not(.footer-text-link):not(.contact-channel-link):hover::after {
     transform: scaleX(1);
     opacity: 1;
 }

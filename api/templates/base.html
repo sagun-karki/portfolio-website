@@ -109,8 +109,8 @@
     <div class="footer-content">
       <p>
         &copy; {{ current_year }} {{ site_data.profile.name }}. All rights reserved.
-        · <a href="/privacy" style="color: var(--text-tertiary); text-decoration: none; margin-left: 0.5rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-tertiary)'">Privacy Policy</a>
-        · <a href="/contact" style="color: var(--text-tertiary); text-decoration: none; margin-left: 0.5rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-tertiary)'">Contact</a>
+        · <a href="/privacy" class="footer-text-link">Privacy Policy</a>
+        · <a href="/contact" class="footer-text-link">Contact</a>
       </p>
       <div class="social-links">
         {% for social in site_data.profile.socials %}
