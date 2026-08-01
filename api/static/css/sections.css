@@ -482,6 +482,20 @@
     text-transform: uppercase;
 }
 
+.timeline-metric {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background-color: var(--accent-dim);
+    border: 1px solid var(--accent);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.04em;
+    text-align: right;
+    white-space: nowrap;
+}
+
 /* Tech stack tag line */
 .timeline-stack {
     font-family: var(--font-mono);

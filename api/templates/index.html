@@ -115,6 +115,9 @@
             </div>
             <div class="timeline-entry-right">
               <p class="card-item-meta timeline-duration">{{ job.duration }}</p>
+              {% if job.metric %}
+              <span class="timeline-metric">{{ job.metric }}</span>
+              {% endif %}
             </div>
           </div>
           {% if job.stack %}
