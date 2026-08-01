@@ -29,7 +29,6 @@ Timeline entries displayed in the Experience section.
 - `logo` (string) - SVG/Image path under static assets.
 - `duration` (string) - Start and end dates.
 - `stack` (string) - Monospace tech list prefix (rendered with `stack:`).
-- `metric` (string) - Core impact metric rendered as a badge next to duration.
 - `bullets` (array of strings) - Rendered as a list in `index.html` with custom `▸` markers.
 
 ### 3. `projects`

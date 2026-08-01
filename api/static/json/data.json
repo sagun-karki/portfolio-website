@@ -25,7 +25,6 @@
       "logo": "NPM-logo.original.png",
       "duration": "Jan 2025 – Present",
       "stack": "GCP (BigQuery) · Dataform · R Shiny · Python · GitHub Actions",
-      "metric": "65% Runtime Reduction",
       "bullets": [
         "Developed predictive user engagement forecasting models to isolate high-churn listener segments, driving algorithmic insights that structured multi-platform content distribution frameworks.",
         "Engineered an audio playback analytics pipeline via BigQuery sessionization to track user drop-off intervals, accelerating historical interaction processing speeds.",
@@ -39,7 +38,6 @@
       "logo": "allo-fiber.svg",
       "duration": "Jan 2024 – Jan 2025",
       "stack": "FastAPI · XGBoost · dbt · BigQuery · K-Means · Geospatial Analysis",
-      "metric": "50% Cycle Latency Cut",
       "bullets": [
         "Built and deployed an end-to-end XGBoost classification pipeline to isolate fraudulent subscription signatures, routing real-time inference logic through a containerized FastAPI service.",
         "Executed unsupervised K-Means clustering and geospatial partition analysis on 1M+ raw network node telemetry logs, reducing investigative cycles for security teams by 50%.",
@@ -52,7 +50,6 @@
       "logo": "nwc.svg",
       "duration": "Feb 2023 – Jan 2024",
       "stack": "Python · PyTorch · BigQuery · Deep Learning (LSTM) · ETL Pipelines",
-      "metric": "40+ Years Multi-Source ETL",
       "bullets": [
         "Built automated Python ingestion scripts to extract, transform, and load 40+ years of fragmented, multi-format climate and environmental records into a centralized BigQuery warehouse.",
         "Trained multivariate Deep Learning LSTM architectures to model and forecast localized agricultural yield fluctuations, benchmarking performance variations against ground-truth USDA data sets."
@@ -64,7 +61,6 @@
       "logo": "nebraska-n.jpg",
       "duration": "Aug 2022 – Aug 2024",
       "stack": "Python · R · GraphQL · Network Analysis",
-      "metric": "",
       "bullets": [
         "Co-authored research modeling the U.S. economy as a network, analyzing structural relationships across economic and environmental metrics using graph-theoretic methods.",
         "Contributed to pedestrian crash risk analysis integrating Open Street View imagery and traffic-calibrated location data across Lincoln, NE infrastructure."
