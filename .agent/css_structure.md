@@ -1,7 +1,7 @@
 # CSS Architecture
 
 This document outlines the modular structure of the CSS for this portfolio website.
-The main stylesheet `api/static/css/styles.css` is an entry point that imports several smaller partial files to maintain a clean and modular architecture.
+Stylesheets in `api/static/css/` are linked individually from `base.html` (and `404.html`) in cascade order. `styles.css` is kept only as a documented order reference.
 
 ## Design Theme: Cyber-Engineer / Technical Blueprint
 
