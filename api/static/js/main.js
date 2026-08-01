@@ -9,14 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const docElement = document.documentElement;
 
     // --- RESPONSIVE NAVIGATION ---
+    const setMenuOpen = (isOpen) => {
+        if (!navLinksContainer || !hamburgerButton) return;
+        navLinksContainer.classList.toggle('is-open', isOpen);
+        hamburgerButton.setAttribute('aria-expanded', String(isOpen));
+        hamburgerButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        const icon = hamburgerButton.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = isOpen ? 'close' : 'menu';
+    };
+
     if (hamburgerButton && navLinksContainer) {
         hamburgerButton.addEventListener('click', () => {
-            navLinksContainer.classList.toggle('is-open');
-            // GA4: Track mobile menu engagement
+            const willOpen = !navLinksContainer.classList.contains('is-open');
+            setMenuOpen(willOpen);
             if (typeof gtag === 'function') {
                 gtag('event', 'mobile_menu_toggle', {
-                    menu_state: navLinksContainer.classList.contains('is-open') ? 'open' : 'closed'
+                    menu_state: willOpen ? 'open' : 'closed'
                 });
+            }
+        });
+
+        navLinksContainer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => setMenuOpen(false));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinksContainer.classList.contains('is-open')) {
+                setMenuOpen(false);
+                hamburgerButton.focus();
             }
         });
     }
