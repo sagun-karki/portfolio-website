@@ -103,6 +103,16 @@
       <h2 class="card-title">About</h2>
       <p>{{ site_data.profile.about }}</p>
     </div>
+    {% set education = site_data.profile.education | default('', true) %}
+    {% if education %}
+    <div class="about-edu">
+      {% set edu_parts = education.split('|') %}
+      <div class="about-edu-degree">{{ (edu_parts[0] | default('', true)) | trim }}</div>
+      {% if edu_parts | length > 1 %}
+      <div class="about-edu-univ">{{ (edu_parts[1:] | default([], true) | join(' · ')) | trim }}</div>
+      {% endif %}
+    </div>
+    {% endif %}
   </section>
 
   <section id="experience">

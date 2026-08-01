@@ -220,6 +220,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // After pointer clicks, let the focus ring animate out then release focus
+    document.addEventListener('pointerup', (e) => {
+        if (e.pointerType === 'keyboard') return;
+        const target = e.target.closest('a, button, .hero-btn, .icon-button');
+        if (!target || !(target instanceof HTMLElement)) return;
+        window.setTimeout(() => {
+            if (document.activeElement === target) target.blur();
+        }, 450);
+    });
 });
 
 // --- ML SCHEMATIC LOADER ANIMATION ---
