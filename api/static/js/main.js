@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksContainer = document.querySelector('.nav-links');
     const header = document.querySelector('.main-header');
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('.material-symbols-outlined');
+    const themeIcon = themeToggle ? themeToggle.querySelector('.material-symbols-outlined') : null;
     const docElement = document.documentElement;
 
     // --- RESPONSIVE NAVIGATION ---
@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- MAIN SCROLL LISTENER (THROTTLED) ---
     const handleScroll = () => {
+        if (!header) return;
         const scrollY = window.scrollY;
 
         // Floating pill transition
