@@ -575,6 +575,11 @@
     gap: 2rem;
 }
 
+.js .card.subpage-card {
+    opacity: 1;
+    transform: none;
+}
+
 .subpage-heading {
     font-size: 1.5rem;
     color: var(--accent);
