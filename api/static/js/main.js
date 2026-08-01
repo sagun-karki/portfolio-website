@@ -224,6 +224,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- ML SCHEMATIC LOADER ANIMATION ---
 function animateSchematic() {
     if (typeof anime === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const svg = document.getElementById('ml-schematic-svg');
+        if (svg) {
+            svg.querySelectorAll('.structure-lines path, .structure-lines rect, .structure-lines circle, .structure-lines line, .node-points circle, .data-streams path')
+                .forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.strokeDashoffset = '0';
+                });
+        }
+        return;
+    }
 
     const tl = anime.timeline({
         easing: 'easeOutElastic(1, .8)',
