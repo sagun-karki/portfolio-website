@@ -1,6 +1,6 @@
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from flask import Flask, render_template, send_from_directory, request, make_response
 from flask_caching import Cache
 
@@ -10,10 +10,13 @@ app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
 cache = Cache(app)
 
+def _utc_today():
+    return datetime.now(timezone.utc).date().isoformat()
+
 @app.context_processor
 def inject_globals():
     return {
-        'current_year': datetime.utcnow().year,
+        'current_year': datetime.now(timezone.utc).year,
         'site_url': request.url_root.rstrip('/'),
         'canonical_path': request.path,
     }
@@ -111,23 +114,30 @@ Sitemap: {host}/sitemap.xml
 def sitemap():
     try:
         host = request.url_root.rstrip('/')
+        data_path = os.path.join(app.root_path, 'static', 'json', 'data.json')
+        try:
+            lastmod = datetime.fromtimestamp(
+                os.path.getmtime(data_path), tz=timezone.utc
+            ).date().isoformat()
+        except OSError:
+            lastmod = _utc_today()
         sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>{host}/</loc>
-        <lastmod>2026-05-28</lastmod>
+        <lastmod>{lastmod}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>{host}/contact</loc>
-        <lastmod>2026-05-28</lastmod>
+        <lastmod>{lastmod}</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>{host}/privacy</loc>
-        <lastmod>2026-05-28</lastmod>
+        <lastmod>{lastmod}</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
